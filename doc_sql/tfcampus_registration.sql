@@ -1,0 +1,25 @@
+CREATE TABLE `tfcampus_registration` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`email` VARCHAR(50) NOT NULL,
+	`class` INT(11) NOT NULL,
+	`notelp` VARCHAR(50) NOT NULL,
+	`alamat` TEXT NOT NULL,
+	`experience` TINYINT(4) NOT NULL DEFAULT '0',
+	`longexp` VARCHAR(50) NULL DEFAULT NULL,
+	`broker` VARCHAR(50) NULL DEFAULT NULL,
+	`jenisacc` VARCHAR(50) NULL DEFAULT NULL,
+	`leverage` VARCHAR(50) NULL DEFAULT NULL,
+	`averagelot` VARCHAR(50) NULL DEFAULT NULL,
+	`umur` INT(3) NOT NULL,
+	`pekerjaan` VARCHAR(50) NOT NULL,
+	`refname` VARCHAR(50) NULL DEFAULT NULL,
+	`method` VARCHAR(50) NULL DEFAULT NULL,
+	`source` VARCHAR(50) NULL DEFAULT NULL,
+	`registered` INT(11) NOT NULL,
+	`reason` VARCHAR(50) NULL DEFAULT NULL,
+	`status` TINYINT(4) NOT NULL DEFAULT '1' COMMENT '0: disable; 1:enable',
+	`params` TEXT NULL DEFAULT NULL,
+	PRIMARY KEY (`id`)
+)
+AUTO_INCREMENT=2307
+;

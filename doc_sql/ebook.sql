@@ -1,0 +1,9 @@
+CREATE TABLE `ebook` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`judul` VARCHAR(50) NOT NULL,
+	`ringkasan` TEXT NOT NULL,
+	`status` TINYINT(4) NOT NULL DEFAULT '1',
+	PRIMARY KEY (`id`)
+)
+AUTO_INCREMENT=3
+;

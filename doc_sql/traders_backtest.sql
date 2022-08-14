@@ -1,0 +1,20 @@
+CREATE TABLE `traders_backtest` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`user_id` INT(11) NOT NULL,
+	`method_name` VARCHAR(150) NOT NULL,
+	`modal` DOUBLE NOT NULL,
+	`lot` DOUBLE NOT NULL,
+	`total_pips` INT(11) NOT NULL,
+	`average_pips` INT(11) NOT NULL,
+	`total_profit` DOUBLE NOT NULL,
+	`average_profit` DOUBLE NOT NULL,
+	`total_trade` INT(11) NOT NULL,
+	`probability` DOUBLE NOT NULL,
+	`average_risk_reward` DOUBLE NOT NULL,
+	`consecutive_profit` INT(11) NOT NULL,
+	`consecutive_loss` INT(11) NOT NULL,
+	`file_url` TEXT NULL DEFAULT NULL,
+	`created_at` TIMESTAMP NULL DEFAULT utc_timestamp(),
+	PRIMARY KEY (`id`),
+	INDEX `traders_backtest_user_id` (`user_id`)
+);

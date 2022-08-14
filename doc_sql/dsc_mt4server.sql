@@ -1,0 +1,15 @@
+CREATE TABLE `dsc_mt4server` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(50) NOT NULL,
+	`host` VARCHAR(128) NOT NULL,
+	`port` INT(11) NOT NULL DEFAULT '443',
+	`host_backup` VARCHAR(128) NOT NULL,
+	`port_backup` INT(11) NOT NULL DEFAULT '443',
+	`manager` INT(11) NOT NULL,
+	`gmt` TINYINT(4) NOT NULL DEFAULT '0',
+	`direct` TINYINT(4) NOT NULL DEFAULT '0',
+	`real` TINYINT(4) NOT NULL DEFAULT '1',
+	PRIMARY KEY (`id`)
+)
+AUTO_INCREMENT=7
+;

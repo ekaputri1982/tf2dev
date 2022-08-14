@@ -1,0 +1,14 @@
+CREATE TABLE `modules` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`title` VARCHAR(20) NOT NULL,
+	`name` VARCHAR(75) NOT NULL,
+	`position` VARCHAR(20) NOT NULL,
+	`note` VARCHAR(20) NOT NULL,
+	`pages` TEXT NOT NULL,
+	`params` TEXT NOT NULL,
+	`ord` TINYINT(4) NOT NULL,
+	`active` TINYINT(4) NOT NULL,
+	PRIMARY KEY (`id`)
+)
+AUTO_INCREMENT=20
+;

@@ -1,0 +1,11 @@
+CREATE TABLE `dsc_search_logs` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`user_id` INT(10) UNSIGNED NOT NULL,
+	`term` VARCHAR(100) NOT NULL DEFAULT '',
+	`ip` VARCHAR(50) NOT NULL DEFAULT '',
+	`date` DATETIME NOT NULL,
+	PRIMARY KEY (`id`),
+	INDEX `user_id` (`user_id`)
+)
+AUTO_INCREMENT=180
+;
