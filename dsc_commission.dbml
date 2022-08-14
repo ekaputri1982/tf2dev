@@ -1,0 +1,6 @@
+Table "dsc_commission" {
+  "id" INT(11) [pk, not null, increment]
+  "nominal" DOUBLE [not null]
+  "userid" INT(10) [not null]
+  "CREATED_AT" INT(11) [default: NULL]
+}

@@ -1,0 +1,7 @@
+Table "affiliate_cfforex" {
+  "userid" INT(11) [pk, not null]
+  "cfid" INT(11) [not null]
+  "cfusername" VARCHAR(75) [not null]
+  "registerdate" INT(11) [default: NULL]
+  "invest" TINYINT(4) [not null, default: "0"]
+}

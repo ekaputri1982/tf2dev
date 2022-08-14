@@ -1,0 +1,7 @@
+Table "tmp" {
+  "email" VARCHAR(50) [not null]
+
+Indexes {
+  email [unique, name: "email"]
+}
+}

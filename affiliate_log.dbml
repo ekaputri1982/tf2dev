@@ -1,0 +1,7 @@
+Table "affiliate_log" {
+  "id" INT(11) [pk, not null, increment]
+  "userid" INT(11) [not null]
+  "adminid" INT(11) [not null]
+  "news" TEXT [not null]
+  "status" TINYINT(4) [not null]
+}

@@ -1,0 +1,12 @@
+Table "brokers" {
+  "id" INT(11) [pk, not null, increment]
+  "bname" VARCHAR(75) [not null]
+  "bfullname" VARCHAR(50) [not null]
+  "image" VARCHAR(75) [default: NULL]
+  "platform" VARCHAR(50) [default: NULL]
+  "spread" VARCHAR(50) [default: NULL]
+  "comm" VARCHAR(50) [default: NULL]
+  "note" TEXT [default: NULL]
+  "module" TEXT [default: NULL]
+  "active" TINYINT(4) [not null, default: "1"]
+}

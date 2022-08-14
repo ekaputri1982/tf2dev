@@ -1,0 +1,10 @@
+Table "tf_protection" {
+  "no" INT(11) [default: NULL]
+  "fullname" VARCHAR(50) [default: NULL]
+  "email" VARCHAR(50) [default: NULL]
+  "phone" VARCHAR(50) [default: NULL]
+  "plat_id" VARCHAR(50) [default: NULL]
+  "reff" VARCHAR(50) [default: NULL]
+  "source" VARCHAR(50) [default: NULL]
+  Note: 'utk pencocokan data docs'
+}

@@ -1,0 +1,4 @@
+Table "dsc_dw_config" {
+  "name" VARCHAR(50) [pk, not null]
+  "val" TEXT [default: NULL]
+}

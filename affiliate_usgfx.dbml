@@ -1,0 +1,10 @@
+Table "affiliate_usgfx" {
+  "userid" INT(11) [not null]
+  "usgid" INT(11) [not null]
+  "registerdate" INT(11) [default: NULL]
+  "invest" TINYINT(4) [not null, default: "0"]
+
+Indexes {
+  userid [name: "pkuserid"]
+}
+}

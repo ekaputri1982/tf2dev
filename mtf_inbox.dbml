@@ -1,0 +1,26 @@
+Table "mtf_inbox" {
+  "id" INT(11) [pk, not null, increment]
+  "title" TEXT [default: NULL]
+  "description" TEXT [default: NULL]
+  "message" TEXT [default: NULL]
+  "params" TEXT [default: NULL]
+  "tm_created" INT(11) [not null, default: `unix_timestamp()`]
+  "tm_done" INT(11) [not null, default: "0"]
+  "guest" TINYINT(4) [not null, default: "0"]
+  "notif" TINYINT(4) [not null, default: "0", note: '1 akan dikirimkan notif ketika broadcast inbox']
+  "notif_image_url" TEXT [default: NULL, note: 'apabila tidak null, akan dikirimkan ketika dibroadcast']
+  "broadcast_job" TINYINT(4) [not null, default: "0", note: 'untuk msg general']
+  "broadcast_time" DATETIME [not null, default: `utc_timestamp()`, note: 'untuk trigger broadcast di masa depan']
+  "broadcast_done" DATETIME [default: NULL]
+  "source" TEXT [default: NULL]
+
+Indexes {
+  `source(1000)` [name: "source"]
+  guest [name: "inbox_guest"]
+  notif [name: "inbox_notif"]
+  broadcast_job [name: "inbox_broadcast_job"]
+  broadcast_time [name: "inbox_broadcast_time"]
+  broadcast_done [name: "inbox_broadcast_done"]
+  tm_created [name: "tm_created"]
+}
+}

@@ -1,0 +1,10 @@
+Table "dsc_subs_reminder" {
+  "id" INT(11) [pk, not null, increment]
+  "user_id" INT(11) [not null]
+  "channel_id" INT(11) [not null]
+  "sent" DATE [not null]
+
+Indexes {
+  (user_id, channel_id, sent) [name: "join"]
+}
+}

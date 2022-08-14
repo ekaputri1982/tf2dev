@@ -1,0 +1,15 @@
+Table "tp_payment" {
+  "id" INT(11) [pk, not null, increment]
+  "bookingcode" VARCHAR(50) [not null]
+  "bank" VARCHAR(50) [not null]
+  "nominal" INT(11) [not null]
+  "name" VARCHAR(50) [not null]
+  "tanggal" DATETIME [not null]
+  "confirm" TINYINT(4) [not null, default: "0"]
+  "adminid" INT(11) [default: NULL]
+
+Indexes {
+  bookingcode [name: "bookingcode"]
+  adminid [name: "adminid"]
+}
+}

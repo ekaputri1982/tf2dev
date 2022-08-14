@@ -1,0 +1,16 @@
+Table "dsc_channels_logs" {
+  "id" INT(11) [pk, not null, increment]
+  "channel_id" INT(10) [not null, default: "0"]
+  "user_id" INT(10) [not null, default: "0"]
+  "action_id" INT(10) [not null, default: "0"]
+  "state_id" INT(10) [not null, default: "0"]
+  "ip" VARCHAR(50) [not null, default: ""]
+  "date" DATETIME [not null, default: "1970-01-01 00:00:00"]
+
+Indexes {
+  channel_id [name: "channel_id"]
+  user_id [name: "user_id"]
+  action_id [name: "action_id"]
+  state_id [name: "state_id"]
+}
+}

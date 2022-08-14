@@ -1,0 +1,22 @@
+Enum "user_tracking_tags_type_enum" {
+  "video"
+  "scroll"
+  "form"
+  "timeonpage"
+  "button"
+}
+
+Table "user_tracking_tags" {
+  "id" INT(11) [pk, not null, increment]
+  "type" user_tracking_tags_type_enum [default: NULL]
+  "name" VARCHAR(50) [not null, default: ""]
+  "description" TEXT [default: NULL]
+  "event" TEXT [default: NULL]
+  "created_at" DATETIME [default: NULL]
+  "updated_at" DATETIME [default: NULL]
+
+Indexes {
+  name [unique, name: "name"]
+  type [name: "type"]
+}
+}

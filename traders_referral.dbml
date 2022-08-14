@@ -1,0 +1,7 @@
+Table "traders_referral" {
+  "userid" INT(11) [pk, not null]
+  "parent" INT(11) [not null]
+  "marketing" INT(11) [not null, default: "0"]
+  "regdate" INT(11) [default: NULL]
+  "MODIFY_TIME" BIGINT(20) [not null]
+}

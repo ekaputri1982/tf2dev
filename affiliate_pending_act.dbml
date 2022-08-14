@@ -1,0 +1,13 @@
+Table "affiliate_pending_act" {
+  "id" INT(11) [pk, not null, increment]
+  "userid" INT(11) [not null]
+  "protocol" VARCHAR(7) [not null]
+  "url" VARCHAR(150) [not null]
+  "task" VARCHAR(25) [not null]
+  "data" TEXT [not null]
+  "pending" TINYINT(4) [not null]
+
+Indexes {
+  (userid, url, pending) [unique, name: "userid"]
+}
+}

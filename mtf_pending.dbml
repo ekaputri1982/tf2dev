@@ -1,0 +1,16 @@
+Table "mtf_pending" {
+  "id" INT(11) [pk, not null, increment]
+  "userid" INT(11) [not null]
+  "type" TINYINT(4) [not null]
+  "key" TEXT [not null]
+  "params" TEXT [not null]
+  "ackPath" TEXT [default: NULL, note: 'pathFile']
+  "ackFunction" TEXT [default: NULL, note: 'Function Name']
+  "sent" TINYINT(4) [not null, default: "0"]
+  "CREATED_AT" BIGINT(20) [default: NULL]
+  "EXPIRED" BIGINT(20) [default: NULL]
+
+Indexes {
+  (userid, type) [name: "user"]
+}
+}

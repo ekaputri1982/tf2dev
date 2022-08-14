@@ -1,0 +1,18 @@
+Table "tp_purchaselog" {
+  "id" INT(11) [pk, not null, increment]
+  "idnumber" VARCHAR(50) [not null]
+  "name" VARCHAR(50) [not null]
+  "telp" VARCHAR(50) [not null]
+  "email" VARCHAR(50) [not null]
+  "jenis" VARCHAR(5) [not null, note: 'sing=single, coup=group, grou=like a boss']
+  "bookingcode" VARCHAR(50) [not null]
+  "tanggal" DATETIME [not null]
+  "expired" DATETIME [not null]
+  "sent" TINYINT(4) [not null, default: "0"]
+  "adminid" BIGINT(20) [default: NULL]
+
+Indexes {
+  bookingcode [unique, name: "booking"]
+  adminid [name: "adminid"]
+}
+}

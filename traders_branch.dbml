@@ -1,0 +1,7 @@
+Table "traders_branch" {
+  "id" VARCHAR(3) [pk, not null]
+  "name" VARCHAR(30) [not null]
+  "city" VARCHAR(16) [not null]
+  "alamat" TEXT [not null]
+  "params" TEXT [default: NULL]
+}

@@ -1,0 +1,9 @@
+Table "traders_branch_data_wilayah" {
+  "id" INT(11) [pk, not null, increment]
+  "branch_id" VARCHAR(3) [not null, default: ""]
+  "province_id" VARCHAR(8) [not null, default: ""]
+
+Indexes {
+  (branch_id, province_id) [unique, name: "branch_id"]
+}
+}

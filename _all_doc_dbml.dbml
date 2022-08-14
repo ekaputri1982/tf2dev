@@ -1,0 +1,1613 @@
+Table "affiliate_askap" {
+  "userid" INT(11) [pk, not null]
+  "askapid" INT(11) [not null]
+  "askapparentid" INT(11) [not null, default: "0"]
+  "askapusername" VARCHAR(75) [not null, default: ""]
+  "askaptelp" VARCHAR(25) [not null, default: ""]
+  "registerdate" INT(11) [default: NULL]
+  "invest" TINYINT(4) [not null, default: "0"]
+  "MODIFY_TIME" BIGINT(20) [not null]
+}
+
+Table "affiliate_cfforex" {
+  "userid" INT(11) [pk, not null]
+  "cfid" INT(11) [not null]
+  "cfusername" VARCHAR(75) [not null]
+  "registerdate" INT(11) [default: NULL]
+  "invest" TINYINT(4) [not null, default: "0"]
+}
+
+Table "affiliate_log" {
+  "id" INT(11) [pk, not null, increment]
+  "userid" INT(11) [not null]
+  "adminid" INT(11) [not null]
+  "news" TEXT [not null]
+  "status" TINYINT(4) [not null]
+}
+
+Table "affiliate_mrg" {
+  "userid" INT(11) [pk, not null]
+  "mrgid" INT(11) [not null]
+  "mrgparentid" INT(11) [not null, default: "0"]
+  "mrgusername" VARCHAR(75) [not null, default: ""]
+  "mrgtelp" VARCHAR(25) [not null, default: ""]
+  "registerdate" INT(11) [default: NULL]
+  "invest" TINYINT(4) [not null, default: "0"]
+  "MODIFY_TIME" BIGINT(20) [not null]
+}
+
+Table "affiliate_pending_act" {
+  "id" INT(11) [pk, not null, increment]
+  "userid" INT(11) [not null]
+  "protocol" VARCHAR(7) [not null]
+  "url" VARCHAR(150) [not null]
+  "task" VARCHAR(25) [not null]
+  "data" TEXT [not null]
+  "pending" TINYINT(4) [not null]
+
+Indexes {
+  (userid, url, pending) [unique, name: "userid"]
+}
+}
+
+Table "affiliate_usgfx" {
+  "userid" INT(11) [not null]
+  "usgid" INT(11) [not null]
+  "registerdate" INT(11) [default: NULL]
+  "invest" TINYINT(4) [not null, default: "0"]
+
+Indexes {
+  userid [name: "pkuserid"]
+}
+}
+
+Table "api_user" {
+  "clientid" INT(11) [pk, not null, increment]
+  "userid" INT(5) [not null]
+  "clientname" VARCHAR(20) [not null]
+  "clientip" TEXT [not null]
+  "api_key" VARCHAR(20) [not null]
+  "active" SMALLINT(1) [not null, default: "1"]
+  "ValidateEmail" SMALLINT(1) [not null, default: "0"]
+  "GetChannels" SMALLINT(1) [not null, default: "0"]
+  "PostSignal" SMALLINT(1) [not null, default: "0"]
+
+Indexes {
+  api_key [unique, name: "api_key"]
+}
+}
+
+Table "askap_settings" {
+  "name" VARCHAR(50) [pk, not null]
+  "value" VARCHAR(50) [default: NULL]
+}
+
+Table "badwords" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(128) [not null]
+  "exact" TINYINT(4) [not null, default: "0"]
+
+Indexes {
+  name [name: "name"]
+}
+}
+
+Table "brokers_connect" {
+  "userid" INT(11) [pk, not null]
+  "brokers" INT(11) [not null]
+  "buid" INT(11) [not null]
+}
+
+Table "brokers" {
+  "id" INT(11) [pk, not null, increment]
+  "bname" VARCHAR(75) [not null]
+  "bfullname" VARCHAR(50) [not null]
+  "image" VARCHAR(75) [default: NULL]
+  "platform" VARCHAR(50) [default: NULL]
+  "spread" VARCHAR(50) [default: NULL]
+  "comm" VARCHAR(50) [default: NULL]
+  "note" TEXT [default: NULL]
+  "module" TEXT [default: NULL]
+  "active" TINYINT(4) [not null, default: "1"]
+}
+
+Table "copyplugin" {
+  "userid" INT(11) [not null]
+  "platform_id" VARCHAR(50) [not null]
+  "broker" VARCHAR(50) [default: NULL]
+
+Indexes {
+  (userid, platform_id) [pk]
+}
+}
+
+Enum "data_wilayah_LEVEL_enum" {
+  "1"
+  "2"
+  "3"
+  "4"
+}
+
+Table "data_wilayah" {
+  "KODE_WILAYAH" VARCHAR(8) [pk, not null]
+  "MST_KODE_WILAYAH" VARCHAR(8) [not null]
+  "NAMA" VARCHAR(255) [not null]
+  "LEVEL" data_wilayah_LEVEL_enum [not null]
+
+Indexes {
+  (MST_KODE_WILAYAH, KODE_WILAYAH) [unique, name: "UNIQUE"]
+}
+}
+
+Table "dsc_assistants" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(50) [not null]
+  "description" TEXT [default: NULL]
+  "param" TEXT [default: NULL]
+  "price" DOUBLE [not null, default: "0"]
+}
+
+Table "dsc_channels_actions" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(50) [not null, default: ""]
+  "reward" FLOAT [not null]
+
+Indexes {
+  name [name: "name"]
+}
+}
+
+Table "dsc_channels_behaviour" {
+  "id" INT(11) [pk, not null, increment]
+  "channel_id" INT(11) [not null]
+  "period" DATE [default: `utc_timestamp()`]
+  "category" LONGTEXT [default: NULL]
+  "behaviour" INT(1) [not null]
+}
+
+Table "dsc_channels_logs" {
+  "id" INT(11) [pk, not null, increment]
+  "channel_id" INT(10) [not null, default: "0"]
+  "user_id" INT(10) [not null, default: "0"]
+  "action_id" INT(10) [not null, default: "0"]
+  "state_id" INT(10) [not null, default: "0"]
+  "ip" VARCHAR(50) [not null, default: ""]
+  "date" DATETIME [not null, default: "1970-01-01 00:00:00"]
+
+Indexes {
+  channel_id [name: "channel_id"]
+  user_id [name: "user_id"]
+  action_id [name: "action_id"]
+  state_id [name: "state_id"]
+}
+}
+
+Table "dsc_channels_point_events" {
+  "id" INT(11) [pk, not null, increment]
+  "channel_id" INT(11) [not null, default: "0"]
+  "utc_start" DATETIME [default: NULL]
+  "utc_end" DATETIME [default: NULL]
+  "settle_signals" INT(11) [not null, default: "0"]
+  "total_signals_created" INT(11) [not null, default: "0"]
+  "total_signals_closed" INT(11) [not null, default: "0"]
+  "total_pips" INT(11) [not null, default: "0"]
+  "avg_pips" DOUBLE [not null, default: "0"]
+  "point" DOUBLE [not null, default: "0"]
+  "medals" TINYINT(4) [not null, default: "0"]
+  "last_qualify_id" INT(11) [not null, default: "0"]
+  "prev_point" DOUBLE [not null, default: "0"]
+  "prev_medal" TINYINT(4) [not null, default: "0"]
+  "prev_channel_medal" TINYINT(4) [not null, default: "0"]
+  "last_avg_pips_monthly" DOUBLE [default: NULL]
+  "next_avg_profit_monthly" DOUBLE [default: NULL]
+  "send_mail" TINYINT(4) [not null, default: "0"]
+
+Indexes {
+  (channel_id, utc_start, utc_end) [unique, name: "channel_id_utc_start_utc_end"]
+  channel_id [name: "channel_id"]
+  utc_start [name: "dt_start"]
+  utc_end [name: "dt_end"]
+  point [name: "point"]
+  medals [name: "medals"]
+  prev_point [name: "prev_month_point"]
+  prev_medal [name: "prev_month_medal"]
+  settle_signals [name: "settle_signals"]
+  total_pips [name: "total_pips"]
+  avg_pips [name: "avg_pips"]
+  prev_channel_medal [name: "prev_channel_medal"]
+  total_signals_created [name: "total_signals_created"]
+  total_signals_closed [name: "total_signals_closed"]
+  last_qualify_id [name: "last_qualify_id"]
+  last_avg_pips_monthly [name: "last_avg_pips_monthly"]
+  next_avg_profit_monthly [name: "next_avg_profit_monthly"]
+}
+}
+
+Table "dsc_channels_point_medal_journal" {
+  "id" INT(11) [pk, not null, increment]
+  "channel_id" INT(11) [not null]
+  "point" DOUBLE [not null, default: "0"]
+  "medal" INT(11) [not null, default: "0"]
+  "utc_insert_at" DATETIME [default: NULL]
+  "reason" VARCHAR(255) [default: NULL]
+
+Indexes {
+  reason [unique, name: "reason"]
+  channel_id [name: "channel_id"]
+  point [name: "point"]
+  utc_insert_at [name: "utc_insert_at"]
+  medal [name: "medal"]
+}
+}
+
+Table "dsc_channels_point_redeem" {
+  "id" INT(11) [pk, not null, increment]
+  "journal_id" INT(11) [not null]
+  "adj_id" INT(11) [default: NULL]
+  "channel_id" INT(11) [not null]
+  "medal" TINYINT(4) [not null, default: "0"]
+  "point" DOUBLE(22,0) [not null, default: "0"]
+  "status" TINYINT(4) [default: "0", note: '0: Waiting, 1: Processed, 2: Cancelled']
+  "admin_id" INT(11) [default: NULL]
+  "created_at" DATETIME [default: `utc_timestamp()`]
+  "updated_at" DATETIME [default: `utc_timestamp()`]
+  "money" INT(11) [not null, default: "0"]
+
+Indexes {
+  channel_id [name: "channel_id"]
+  admin_id [name: "admin_id"]
+  journal_id [name: "journal_id"]
+  medal [name: "medal"]
+  point [name: "point"]
+  status [name: "status"]
+  created_at [name: "created_at"]
+  updated_at [name: "updated_at"]
+}
+}
+
+Enum "dsc_channels_pricing_unit_enum" {
+  "day"
+  "month"
+  "year"
+}
+
+Table "dsc_channels_pricing" {
+  "channel_id" INT(11) [not null]
+  "qty" INT(11) [not null]
+  "unit" dsc_channels_pricing_unit_enum [not null, default: "month"]
+  "price" DOUBLE [not null]
+  "CREATED_AT" TIMESTAMP [not null, default: `current_timestamp()`]
+
+Indexes {
+  (channel_id, qty, unit) [pk]
+}
+}
+
+Table "dsc_channels_state" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(50) [not null, default: ""]
+  "multiplier" DOUBLE [not null]
+
+Indexes {
+  name [name: "name"]
+}
+}
+
+Enum "dsc_channels_token_unit_enum" {
+  "day"
+  "month"
+  "year"
+}
+
+Table "dsc_channels_token" {
+  "id" INT(11) [pk, not null, increment]
+  "channel_id" INT(11) [not null]
+  "token" VARCHAR(20) [not null, default: "", note: 'Tipe datanya belum tau mau apa']
+  "subs_id" INT(11) [default: NULL]
+  "qty" INT(11) [not null, default: "1"]
+  "unit" dsc_channels_token_unit_enum [not null, default: "month"]
+  "CREATED_AT" TIMESTAMP [not null, default: `current_timestamp()`]
+  "EXPIRED_AT" TIMESTAMP [not null, default: "0000-00-00 00:00:00"]
+
+Indexes {
+  token [unique, name: "token"]
+}
+}
+
+Table "dsc_channels" {
+  "id" INT(11) [pk, not null, increment]
+  "user_id" INT(11) [not null]
+  "title" VARCHAR(25) [not null]
+  "image" VARCHAR(255) [default: NULL]
+  "caption" TEXT [default: NULL]
+  "price" DOUBLE [not null, default: "0"]
+  "price_last_update" DATETIME [default: NULL]
+  "status" TINYINT(4) [not null, default: "1", note: '0:disabled; 1:active']
+  "medals" TINYINT(4) [not null, default: "0"]
+  "point" DOUBLE [not null, default: "0"]
+  "last_qualify_id" INT(11) [not null, default: "0"]
+  "mt4server" TINYINT(4) [default: NULL]
+  "account" INT(11) [default: NULL]
+  "locked" TINYINT(4) [not null, default: "0"]
+  "created_time" BIGINT(20) [not null]
+  "creator" INT(11) [default: NULL]
+  "block_signal" TINYINT(4) [default: "0"]
+  "private" TINYINT(4) [default: "0"]
+  "show" TINYINT(4) [default: "1"]
+  "contact_email" VARCHAR(50) [default: NULL]
+  "recommend" INT(11) [not null, default: "0"]
+  "total_active_subs" INT(11) [not null, default: "0"]
+  "total_profit_scale" DOUBLE [not null, default: "0"]
+  "total_pips" DOUBLE [not null, default: "0"]
+  "total_signal" INT(11) [not null, default: "0"]
+  "total_signal_expired" INT(11) [not null, default: "0"]
+  "total_signal_profit" INT(11) [not null, default: "0"]
+  "total_signal_loss" INT(11) [not null, default: "0"]
+  "total_signal_success_rate" DOUBLE [not null, default: "0"]
+  "total_signal_last_count" DATETIME [default: NULL]
+  "last_post" DATETIME [default: NULL]
+  "total_running_signal" INT(11) [default: NULL]
+  "cur_month_signal" INT(11) [not null, default: "0"]
+  "cur_month_signal_profit" INT(11) [not null, default: "0"]
+  "cur_month_signal_loss" INT(11) [not null, default: "0"]
+  "cur_month_signal_expired" INT(11) [not null, default: "0"]
+  "cur_month_signal_success_rate" DOUBLE [not null, default: "0"]
+  "cur_month_signal_pips" DOUBLE [not null, default: "0"]
+  "cur_month_signal_profit_scale" DOUBLE [not null, default: "0"]
+  "cur_month_signal_last_count" DATETIME [default: NULL]
+  "last_month_signal" INT(11) [not null, default: "0"]
+  "last_month_signal_profit" INT(11) [not null, default: "0"]
+  "last_month_signal_loss" INT(11) [not null, default: "0"]
+  "last_month_signal_expired" INT(11) [not null, default: "0"]
+  "last_month_signal_success_rate" DOUBLE [not null, default: "0"]
+  "last_month_signal_pips" DOUBLE [not null, default: "0"]
+  "last_month_signal_profit_scale" DOUBLE [not null, default: "0"]
+  "last_month_signal_last_count" DATETIME [default: NULL]
+  "diff_week" INT(11) [not null, default: "0"]
+  "post_per_week" INT(11) [not null, default: "0"]
+  "need_update" TINYINT(4) [not null, default: "1"]
+  "last_point_count" DATETIME [default: NULL]
+  "avg_pips_monthly" DOUBLE [default: NULL]
+
+Indexes {
+  title [unique, name: "title"]
+  (account, mt4server) [unique, name: "mt4server"]
+  user_id [name: "user_id"]
+  created_time [name: "created_time"]
+  price [name: "price"]
+  status [name: "status"]
+  recommend [name: "recommend"]
+  show [name: "show"]
+  total_active_subs [name: "total_active_subs"]
+  total_profit_scale [name: "total_profit_scale"]
+  total_pips [name: "total_pips"]
+  total_signal [name: "total_signal"]
+  total_signal_expired [name: "total_signal_expired"]
+  total_signal_profit [name: "total_signal_profit"]
+  total_signal_loss [name: "total_signal_loss"]
+  total_signal_success_rate [name: "total_signal_success_rate"]
+  need_update [name: "need_update"]
+  diff_week [name: "diff_week"]
+  post_per_week [name: "post_per_week"]
+  medals [name: "medals"]
+  point [name: "point"]
+  last_point_count [name: "last_point_count"]
+  last_qualify_id [name: "last_qualify_id"]
+  cur_month_signal [name: "cur_month_signal"]
+  cur_month_signal_profit [name: "cur_month_signal_profit"]
+  cur_month_signal_loss [name: "cur_month_signal_loss"]
+  cur_month_signal_expired [name: "cur_month_signal_expired"]
+  cur_month_signal_success_rate [name: "cur_month_signal_success_rate"]
+  cur_month_signal_pips [name: "cur_month_signal_pips"]
+  cur_month_signal_profit_scale [name: "cur_month_signal_profit_scale"]
+  cur_month_signal_last_count [name: "cur_month_signal_last_count"]
+  last_month_signal [name: "last_month_signal"]
+  last_month_signal_profit [name: "last_month_signal_profit"]
+  last_month_signal_loss [name: "last_month_signal_loss"]
+  last_month_signal_expired [name: "last_month_signal_expired"]
+  last_month_signal_success_rate [name: "last_month_signal_success_rate"]
+  last_month_signal_pips [name: "last_month_signal_pips"]
+  last_month_signal_profit_scale [name: "last_month_signal_profit_scale"]
+  last_month_signal_last_count [name: "last_month_signal_last_count"]
+  total_signal_last_count [name: "total_signal_last_count"]
+  last_post [name: "last_post"]
+  total_running_signal [name: "total_running_signal"]
+  avg_pips_monthly [name: "avg_pips_monthly"]
+}
+}
+
+Table "dsc_commission" {
+  "id" INT(11) [pk, not null, increment]
+  "nominal" DOUBLE [not null]
+  "userid" INT(10) [not null]
+  "CREATED_AT" INT(11) [default: NULL]
+}
+
+Table "dsc_dw_channel_pair_consecutive" {
+  "id" INT(11) [pk, not null, increment]
+  "channelid" INT(11) [not null]
+  "pair" VARCHAR(16) [not null, default: ""]
+  "type" VARCHAR(16) [not null, default: ""]
+  "jumlah" INT(11) [not null, default: "0"]
+  "pips" DOUBLE [not null, default: "0"]
+  "netprofit" DOUBLE [not null, default: "0"]
+  "from" DATETIME [not null]
+  "to" DATETIME [not null]
+
+Indexes {
+  (channelid, pair, type) [unique, name: "channelid_pair_type"]
+}
+}
+
+Table "dsc_dw_channel_pair_daily" {
+  "id" INT(11) [pk, not null, increment]
+  "channelid" INT(11) [not null]
+  "pair" VARCHAR(16) [not null, default: ""]
+  "dateid" DATETIME [not null]
+  "cmd" VARCHAR(8) [not null, default: ""]
+  "expired" INT(11) [not null, default: "0"]
+  "pips" INT(11) [not null, default: "0"]
+  "pips_gross_profit" INT(11) [not null, default: "0"]
+  "pips_gross_loss" INT(11) [not null, default: "0"]
+  "netprofit" DOUBLE(22,0) [not null, default: "0"]
+  "gross_profit" DOUBLE(22,0) [not null, default: "0"]
+  "gross_loss" DOUBLE(22,0) [not null, default: "0"]
+  "trades" INT(11) [not null, default: "0"]
+  "win_trades" INT(11) [not null, default: "0"]
+  "loss_trades" INT(11) [not null, default: "0"]
+  "avg_duration" INT(11) [not null, default: "0"]
+  "copier" INT(11) [not null, default: "0"]
+  "copier_win_trades" INT(11) [not null, default: "0"]
+  "copier_loss_trades" INT(11) [not null, default: "0"]
+  "copier_avg_duration" INT(11) [not null, default: "0"]
+  "copier_expired" INT(11) [not null, default: "0"]
+  "copier_volume" DOUBLE(22,0) [not null, default: "0"]
+  "copier_netprofit" DOUBLE(22,0) [not null, default: "0"]
+  "copier_gross_profit" DOUBLE(22,0) [not null, default: "0"]
+  "copier_gross_loss" DOUBLE(22,0) [not null, default: "0"]
+  "copier_pips" INT(11) [not null, default: "0"]
+  "copier_pips_gross_profit" INT(11) [not null, default: "0"]
+  "copier_pips_gross_loss" INT(11) [not null, default: "0"]
+
+Indexes {
+  (channelid, dateid, pair, cmd) [unique, name: "channelid_dateid_pair_cmd"]
+  channelid [name: "channelid"]
+  dateid [name: "dateid"]
+  pair [name: "pair"]
+}
+}
+
+Table "dsc_dw_channel_payment_daily" {
+  "id" INT(11) [pk, not null, increment]
+  "channel_id" INT(11) [not null, default: "0"]
+  "tanggal" DATE [default: NULL]
+  "total" DOUBLE(22,0) [default: NULL]
+
+Indexes {
+  tanggal [name: "tanggal"]
+  channel_id [name: "channel_id"]
+}
+}
+
+Table "dsc_dw_config" {
+  "name" VARCHAR(50) [pk, not null]
+  "val" TEXT [default: NULL]
+}
+
+Table "dsc_logs" {
+  "id" INT(11) [pk, not null, increment]
+  "ip" VARCHAR(50) [not null, default: ""]
+  "log" TEXT [not null, default: ""]
+  "created_at" DATETIME [default: "1970-01-01 00:00:00"]
+
+Indexes {
+  `log(200)` [name: "log"]
+}
+}
+
+Table "dsc_mt4server" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(50) [not null]
+  "host" VARCHAR(128) [not null]
+  "port" INT(11) [not null, default: "443"]
+  "host_backup" VARCHAR(128) [not null]
+  "port_backup" INT(11) [not null, default: "443"]
+  "manager" INT(11) [not null]
+  "gmt" TINYINT(4) [not null, default: "0"]
+  "direct" TINYINT(4) [not null, default: "0"]
+  "real" TINYINT(4) [not null, default: "1"]
+}
+
+Table "dsc_payment_channel" {
+  "id" INT(11) [pk, not null]
+  "name" VARCHAR(32) [not null]
+  "active" TINYINT(4) [not null, default: "1"]
+  "email" INT(11) [not null, default: "0"]
+  "fee_fixed" DOUBLE [default: "0"]
+  "fee_rate" FLOAT [default: "0"]
+  Note: 'Payment Channel available for Traders family'
+}
+
+Table "dsc_payment" {
+  "bill_no" INT(11) [pk, not null, increment]
+  "bill_reff" INT(11) [not null, note: 'Channel ID']
+  "bill_code" SMALLINT(6) [not null, default: "0"]
+  "bill_date" DATETIME [not null, default: "1970-01-01 00:00:00"]
+  "bill_expired" DATETIME [not null, default: "1970-01-01 00:00:00"]
+  "bill_desc" VARCHAR(128) [not null, default: ""]
+  "bill_currency" CHAR(3) [not null, default: ""]
+  "bill_total" DOUBLE(22,0) [not null, default: "0"]
+  "payment_channel" INT(11) [not null]
+  "pay_type" TINYINT(4) [not null, default: "0"]
+  "cust_no" INT(11) [not null]
+  "cust_name" VARCHAR(128) [not null, default: ""]
+  "msisdn" VARCHAR(64) [not null, default: ""]
+  "email" VARCHAR(128) [not null, default: ""]
+  "terminal" CHAR(2) [not null, default: ""]
+  "product" VARCHAR(50) [not null, default: ""]
+  "amount" DOUBLE(22,0) [not null, default: "0"]
+  "qty" INT(11) [not null, default: "0"]
+  "payment_plan" TINYINT(4) [not null, default: "0"]
+  "tenor" CHAR(2) [not null, default: ""]
+  "trx_id" VARCHAR(16) [default: NULL]
+  "payment_total" DOUBLE [not null, default: "0"]
+  "payment_date" DATETIME [default: NULL]
+  "payment_status" TINYINT(4) [not null, default: "0", note: '0 Belum diproses; 1 Dalam proses; 2 Payment Success; 4 Payment Reserval; 5 Tagihan tidak ditemukan; 7 Payment Refused; 8 Payment Cancelled; 9 Unknown']
+  "payment_reff" VARCHAR(32) [default: NULL]
+  "comm" DOUBLE [default: NULL]
+  "admin_fee" DOUBLE [default: NULL]
+  "subs_expired" DATETIME [default: NULL]
+  "source" TINYINT(4) [default: "1", note: '0: Internal, 1: Faspay']
+
+Indexes {
+  cust_no [name: "cust_no"]
+  payment_channel [name: "payment_channel"]
+  bill_reff [name: "bill_reff"]
+  payment_date [name: "payment_date"]
+  bill_code [name: "bill_code"]
+}
+  Note: 'https://faspay.co.id/docs/'
+}
+
+Table "dsc_search_logs" {
+  "id" INT(11) [pk, not null, increment]
+  "user_id" INT(10) [not null]
+  "term" VARCHAR(100) [not null, default: ""]
+  "ip" VARCHAR(50) [not null, default: ""]
+  "date" DATETIME [not null]
+
+Indexes {
+  user_id [name: "user_id"]
+}
+}
+
+Table "dsc_signals_copy" {
+  "id" INT(11) [pk, not null, increment]
+  "signal_id" INT(11) [not null, default: "0"]
+  "user_id" INT(11) [not null, default: "0"]
+  "broker" TINYINT(4) [default: NULL]
+  "mt4id" INT(11) [default: NULL]
+  "symbol" VARCHAR(30) [default: NULL]
+  "op" TINYINT(4) [default: NULL]
+  "open_time" DATETIME [default: NULL]
+  "volume" INT(11) [default: NULL]
+  "ticket_id" INT(11) [default: NULL]
+  "price" DOUBLE [default: NULL]
+  "sl" DOUBLE [default: NULL]
+  "tp" DOUBLE [default: NULL]
+  "commission" DOUBLE [default: NULL]
+  "storage" DOUBLE [default: NULL]
+  "profit" DOUBLE [default: NULL]
+  "pips" INT(11) [default: NULL]
+  "close_price" DOUBLE [default: NULL]
+  "close_time" DATETIME [default: NULL]
+  "expired" INT(11) [default: "86400"]
+  "reason" TINYINT(4) [not null, default: "0"]
+  "state" TINYINT(4) [not null, default: "0"]
+  "CREATED_AT" TIMESTAMP [default: NULL]
+  "LAST_MODIFY" TIMESTAMP [default: NULL]
+
+Indexes {
+  signal_id [name: "signal_id"]
+  user_id [name: "user_id"]
+  mt4id [name: "mt4id"]
+  op [name: "op"]
+  open_time [name: "open_time"]
+  volume [name: "volume"]
+  ticket_id [name: "ticket_id"]
+  profit [name: "profit"]
+  close_time [name: "close_time"]
+  CREATED_AT [name: "CREATED_AT"]
+  LAST_MODIFY [name: "LAST_MODIFY"]
+}
+}
+
+Table "dsc_signals" {
+  "id" INT(11) [pk, not null, increment]
+  "channel_id" INT(11) [not null, default: "0"]
+  "volume" INT(11) [not null, default: "0"]
+  "symbol" VARCHAR(30) [default: NULL]
+  "op" TINYINT(4) [default: NULL]
+  "open_time" DATETIME [default: NULL]
+  "price" DOUBLE [not null, default: "0"]
+  "sl" DOUBLE [not null, default: "0"]
+  "tp" DOUBLE [not null, default: "0"]
+  "active" TINYINT(4) [not null, default: "1"]
+  "ticket_id" INT(11) [default: NULL]
+  "mt4server" INT(11) [not null, default: "0"]
+  "commission" DOUBLE [default: NULL]
+  "storage" DOUBLE [default: NULL]
+  "profit" DOUBLE [default: NULL]
+  "pips" INT(11) [default: NULL]
+  "close_price" DOUBLE [default: NULL]
+  "close_time" TIMESTAMP [default: NULL]
+  "expired" INT(11) [default: NULL]
+  "reason" TINYINT(4) [not null, default: "0"]
+  "state" TINYINT(4) [not null, default: "0"]
+  "notified" TINYINT(1) [not null, default: "0", note: '0: not sent yet, 1: email sent']
+  "profit_scale" DOUBLE [default: NULL]
+  "CREATED_AT" TIMESTAMP [default: NULL]
+  "LAST_MODIFY" TIMESTAMP [default: NULL]
+
+Indexes {
+  channel_id [name: "channel_id"]
+  symbol [name: "symbol"]
+  op [name: "op"]
+  open_time [name: "open_time"]
+  active [name: "active"]
+  profit [name: "profit"]
+  pips [name: "pips"]
+  expired [name: "expired"]
+  notified [name: "notified"]
+  close_time [name: "close_time"]
+  profit_scale [name: "profit_scale"]
+  CREATED_AT [name: "CREATED_AT"]
+  LAST_MODIFY [name: "LAST_MODIFY"]
+}
+}
+
+Table "dsc_subs_auto_copy_temp" {
+  "id" INT(11) [pk, not null, increment]
+  "channelid" INT(11) [default: NULL]
+  "user_id" INT(11) [default: NULL]
+  "mt4server" INT(11) [default: NULL]
+  "account" INT(11) [default: NULL]
+  "volume" INT(11) [default: NULL]
+  "symbol" VARCHAR(16) [default: NULL]
+  "symbol_map" VARCHAR(16) [default: NULL]
+}
+
+Table "dsc_subs_auto_copy" {
+  "id" INT(11) [pk, not null, increment]
+  "channelid" INT(11) [default: NULL]
+  "user_id" INT(11) [default: NULL]
+  "mt4server" INT(11) [default: NULL]
+  "account" INT(11) [default: NULL]
+  "volume" INT(11) [default: NULL]
+  "symbol" VARCHAR(16) [default: NULL]
+  "symbol_map" VARCHAR(16) [default: NULL]
+}
+
+Table "dsc_subs_reminder" {
+  "id" INT(11) [pk, not null, increment]
+  "user_id" INT(11) [not null]
+  "channel_id" INT(11) [not null]
+  "sent" DATE [not null]
+
+Indexes {
+  (user_id, channel_id, sent) [name: "join"]
+}
+}
+
+Table "dsc_subs" {
+  "id" INT(11) [pk, not null, increment]
+  "channel_id" INT(11) [not null]
+  "user_id" INT(11) [not null]
+  "subs" TINYINT(4) [default: "1"]
+  "paid" INT(11) [not null, default: "0"]
+  "mute" TINYINT(4) [not null, default: "0"]
+  "CREATED_AT" TIMESTAMP [default: NULL]
+  "EXPIRED" TIMESTAMP [default: NULL]
+  "MODIFIY_TIME" TIMESTAMP [default: NULL]
+
+Indexes {
+  (channel_id, user_id) [name: "user_channel"]
+  paid [name: "paid"]
+  EXPIRED [name: "EXPIRED"]
+  subs [name: "subs"]
+  (channel_id, EXPIRED) [name: "channel_expired"]
+}
+}
+
+Table "dsc_symbol_config" {
+  "symbol" VARCHAR(30) [pk, not null]
+  "digit" TINYINT(4) [not null]
+}
+
+Table "dsc_symbol" {
+  "id" INT(11) [pk, not null, increment]
+  "main" VARCHAR(16) [not null]
+  "name" VARCHAR(16) [not null]
+  "security" VARCHAR(16) [default: NULL]
+
+Indexes {
+  (main, security) [unique, name: "UniqueSym"]
+  security [name: "FK_gc_symbol_gc_securities"]
+}
+}
+
+Table "dsc_users" {
+  "userid" INT(11) [pk, not null]
+  "pubkey" VARCHAR(50) [default: NULL]
+  "seckey" VARCHAR(50) [default: NULL]
+  "expires" INT(11) [not null, default: "0"]
+  "ip" TEXT [default: NULL]
+  "bank_name" VARCHAR(50) [default: NULL]
+  "bank_accno" VARCHAR(50) [default: NULL]
+  "bank_username" VARCHAR(50) [default: NULL]
+
+Indexes {
+  pubkey [name: "pubkey"]
+}
+}
+
+Table "dsc_withdrawal" {
+  "id" INT(11) [pk, not null, increment]
+  "channel_id" INT(11) [not null]
+  "nominal" DOUBLE [not null]
+  "verify" TINYINT(4) [not null, default: "0", note: '0 : waiting, 2 : done, 1 : refused; 3 : comission']
+  "verifier" INT(11) [default: NULL]
+  "verified_at" DATETIME [default: NULL]
+  "CREATED_AT" DATETIME [not null, default: `utc_timestamp()`]
+  "MODIFIED_AT" DATETIME [not null, default: `utc_timestamp()`]
+
+Indexes {
+  channel_id [name: "channel_id"]
+}
+}
+
+Table "dump" {
+  "em" VARCHAR(50) [not null]
+  "name" TEXT [not null]
+  "dt" DATETIME [not null]
+}
+
+Table "dw_date_dimension" {
+  "utc_datetime_start" DATETIME [pk, not null]
+  "utc_datetime_end" DATETIME [not null]
+  "utc_unix_start" BIGINT(20) [default: NULL]
+  "utc_unix_end" BIGINT(20) [default: NULL]
+  "dd_gmt" TINYINT(4) [not null]
+  "dd_date" DATE [default: NULL]
+  "dd_year" SMALLINT(6) [default: NULL]
+  "dd_month" SMALLINT(6) [default: NULL]
+  "dd_day" SMALLINT(6) [default: NULL]
+  "dd_yearweek" SMALLINT(6) [default: NULL]
+  "dd_quarter" SMALLINT(6) [default: NULL]
+  "dd_month_name" CHAR(10) [default: NULL]
+  "dd_day_name" CHAR(10) [default: NULL]
+  "dd_nama_bulan" CHAR(10) [default: NULL]
+  "dd_nama_hari" CHAR(10) [default: NULL]
+
+Indexes {
+  utc_datetime_end [unique, name: "utc_datetime_end"]
+  utc_unix_start [unique, name: "utc_unix_start"]
+  utc_unix_end [unique, name: "utc_unix_end"]
+  dd_date [name: "dd_date"]
+  dd_gmt [name: "dd_gmt"]
+  dd_year [name: "dd_year"]
+  dd_month [name: "dd_month"]
+  dd_day [name: "dd_day"]
+  dd_yearweek [name: "dd_yearweek"]
+  dd_quarter [name: "dd_quarter"]
+  dd_month_name [name: "dd_month_name"]
+  dd_day_name [name: "dd_day_name"]
+  dd_nama_bulan [name: "dd_nama_bulan"]
+  dd_nama_hari [name: "dd_nama_hari"]
+  (utc_unix_start, utc_unix_end) [name: "utc_unix_start_utc_unix_end"]
+}
+}
+
+Table "easy_users" {
+  "id" VARCHAR(50) [pk, not null, default: ""]
+  "account" INT(11) [not null]
+  "broker" VARCHAR(50) [not null]
+  "params" TEXT [default: NULL]
+  "created" INT(11) [not null]
+  "MODIFIED" INT(11) [not null]
+
+Indexes {
+  (broker, account) [unique, name: "acc"]
+}
+}
+
+Table "ebook" {
+  "id" INT(11) [pk, not null, increment]
+  "judul" VARCHAR(50) [not null]
+  "ringkasan" TEXT [not null]
+  "status" TINYINT(4) [not null, default: "1"]
+}
+
+Table "fxd_data" {
+  "year" INT(11) [not null]
+  "month" INT(11) [not null]
+  "start" DOUBLE [not null]
+  "end" DOUBLE [not null]
+
+Indexes {
+  (year, month) [pk]
+}
+}
+
+Table "fxd_page" {
+  "name" VARCHAR(24) [pk, not null]
+  "val" VARCHAR(24) [default: NULL]
+}
+
+Table "groups_rules" {
+  "groupid" INT(11) [not null]
+  "ruleid" INT(11) [not null]
+
+Indexes {
+  (groupid, ruleid) [pk]
+}
+}
+
+Table "hook" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(50) [not null]
+  "notes" TEXT [not null]
+  "tags" TEXT [default: NULL]
+
+Indexes {
+  name [unique, name: "unik"]
+}
+}
+
+Table "ios_device" {
+  "uuid" VARCHAR(50) [pk, not null, default: ""]
+  "logged" TINYINT(4) [not null, default: "0"]
+  "userid" INT(11) [default: NULL]
+  "params" TEXT [default: NULL]
+  "created" INT(11) [not null]
+  "MODIFIED" INT(11) [not null]
+
+Indexes {
+  (userid, logged) [unique, name: "userid"]
+}
+}
+
+Table "logs" {
+  "id" INT(10) [pk, not null, increment]
+  "user_id" INT(5) [not null]
+  "action" VARCHAR(100) [not null]
+  "ip" VARCHAR(15) [not null]
+  "browser" VARCHAR(200) [not null]
+  "time" INT(10) [not null]
+  "notes" TEXT [default: NULL]
+  "target" INT(11) [not null, default: "0"]
+
+Indexes {
+  user_id [name: "user_id"]
+}
+}
+
+Table "mail_party" {
+  "id" INT(11) [pk, not null, increment]
+  "title" TEXT [not null]
+  "subject" TEXT [not null]
+  "from_name" VARCHAR(50) [not null]
+  "from_mail" VARCHAR(50) [not null]
+  "to_name" VARCHAR(50) [not null]
+  "to_mail" VARCHAR(50) [not null]
+  "bcc_name" VARCHAR(100) [default: NULL]
+  "bcc_mail" VARCHAR(100) [default: NULL]
+  "replyto_name" VARCHAR(50) [not null]
+  "replyto_mail" VARCHAR(50) [not null]
+  "content" TEXT [not null]
+}
+
+Table "mail_temp" {
+  "id" INT(11) [pk, not null, increment]
+  "title" TEXT [not null]
+  "subject" TEXT [not null]
+  "from_name" VARCHAR(50) [not null]
+  "from_mail" VARCHAR(50) [not null]
+  "to_name" VARCHAR(50) [not null]
+  "to_mail" VARCHAR(50) [not null]
+  "bcc_name" VARCHAR(50) [default: NULL]
+  "bcc_mail" VARCHAR(50) [default: NULL]
+  "replyto_name" VARCHAR(50) [not null]
+  "replyto_mail" VARCHAR(50) [not null]
+  "content" TEXT [not null]
+  "template_id" INT(11) [default: NULL]
+  "hook" INT(11) [default: NULL]
+
+Indexes {
+  template_id [name: "mail_temp_template_id"]
+}
+}
+
+Table "mail_template" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(50) [not null]
+  "template" TEXT [default: NULL]
+
+Indexes {
+  name [unique, name: "name"]
+}
+}
+
+Table "modules" {
+  "id" INT(11) [pk, not null, increment]
+  "title" VARCHAR(20) [not null]
+  "name" VARCHAR(75) [not null]
+  "position" VARCHAR(20) [not null]
+  "note" VARCHAR(20) [not null]
+  "pages" TEXT [not null]
+  "params" TEXT [not null]
+  "ord" TINYINT(4) [not null]
+  "active" TINYINT(4) [not null]
+}
+
+Table "mrg_settings" {
+  "name" VARCHAR(50) [pk, not null]
+  "value" VARCHAR(50) [default: NULL]
+}
+
+Table "mtf_chat" {
+  "id" INT(10) [pk, not null, increment]
+  "from" INT(10) [not null]
+  "fromtype" TINYINT(3) [not null]
+  "to" INT(10) [not null]
+  "totype" TINYINT(3) [not null]
+  "message" TEXT [not null]
+  "state" TINYINT(3) [not null, default: "0"]
+  "MODIFIED" INT(11) [not null]
+
+Indexes {
+  (fromtype, from) [name: "from"]
+  state [name: "state"]
+  (totype, to) [name: "to"]
+}
+}
+
+Table "mtf_inbox_user" {
+  "msgid" INT(11) [not null]
+  "userid" INT(11) [not null]
+  "sent" TINYINT(4) [not null, default: "0"]
+  "baca" TINYINT(4) [not null, default: "0"]
+  "deleted" TINYINT(4) [not null, default: "0"]
+  "email" VARCHAR(255) [default: NULL]
+  "MODIFIED" INT(11) [not null, default: `unix_timestamp()`]
+
+Indexes {
+  email [name: "Index 2"]
+  baca [name: "baca"]
+  deleted [name: "deleted"]
+  MODIFIED [name: "modified"]
+  sent [name: "sent"]
+  userid [name: "userid"]
+  (msgid, userid) [pk]
+}
+}
+
+Table "mtf_inbox" {
+  "id" INT(11) [pk, not null, increment]
+  "title" TEXT [default: NULL]
+  "description" TEXT [default: NULL]
+  "message" TEXT [default: NULL]
+  "params" TEXT [default: NULL]
+  "tm_created" INT(11) [not null, default: `unix_timestamp()`]
+  "tm_done" INT(11) [not null, default: "0"]
+  "guest" TINYINT(4) [not null, default: "0"]
+  "notif" TINYINT(4) [not null, default: "0", note: '1 akan dikirimkan notif ketika broadcast inbox']
+  "notif_image_url" TEXT [default: NULL, note: 'apabila tidak null, akan dikirimkan ketika dibroadcast']
+  "broadcast_job" TINYINT(4) [not null, default: "0", note: 'untuk msg general']
+  "broadcast_time" DATETIME [not null, default: `utc_timestamp()`, note: 'untuk trigger broadcast di masa depan']
+  "broadcast_done" DATETIME [default: NULL]
+  "source" TEXT [default: NULL]
+
+Indexes {
+  `source(1000)` [name: "source"]
+  guest [name: "inbox_guest"]
+  notif [name: "inbox_notif"]
+  broadcast_job [name: "inbox_broadcast_job"]
+  broadcast_time [name: "inbox_broadcast_time"]
+  broadcast_done [name: "inbox_broadcast_done"]
+  tm_created [name: "tm_created"]
+}
+}
+
+Table "mtf_pending" {
+  "id" INT(11) [pk, not null, increment]
+  "userid" INT(11) [not null]
+  "type" TINYINT(4) [not null]
+  "key" TEXT [not null]
+  "params" TEXT [not null]
+  "ackPath" TEXT [default: NULL, note: 'pathFile']
+  "ackFunction" TEXT [default: NULL, note: 'Function Name']
+  "sent" TINYINT(4) [not null, default: "0"]
+  "CREATED_AT" BIGINT(20) [default: NULL]
+  "EXPIRED" BIGINT(20) [default: NULL]
+
+Indexes {
+  (userid, type) [name: "user"]
+}
+}
+
+Table "mtf_signals" {
+  "id" INT(11) [pk, not null, increment]
+  "user_id" INT(11) [not null]
+  "symbol" VARCHAR(30) [not null]
+  "op" TINYINT(4) [not null]
+  "price" VARCHAR(50) [not null]
+  "sl" VARCHAR(50) [not null]
+  "tp" VARCHAR(50) [not null]
+  "active" TINYINT(4) [not null, default: "1"]
+  "CREATED_AT" BIGINT(20) [default: NULL]
+  "MODIFY_TIME" BIGINT(20) [default: NULL]
+}
+
+Table "promotion" {
+  "id" INT(11) [pk, not null, increment]
+  "title" VARCHAR(45) [not null]
+  "url_link" TEXT [not null]
+  "url_img" TEXT [not null]
+  "status" TINYINT(1) [not null, default: "0", note: '0 : tidak aktif ; 1 : aktif']
+  "created_at" DATETIME [not null]
+  "updated_at" DATETIME [not null]
+  "published_at" DATETIME [not null]
+}
+
+Table "register_source" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(20) [not null]
+  "uri" TEXT [not null]
+  "route" TEXT [not null]
+  "force" TINYINT(1) [not null, note: '0: must fills profile details || 1: without fills profile details ']
+
+Indexes {
+  name [unique, name: "name"]
+}
+}
+
+Table "routines" {
+  "id" INT(11) [pk, not null, increment]
+  "extid" INT(11) [not null]
+  "cron" TEXT [not null]
+  "file" TEXT [not null]
+  "fn" VARCHAR(50) [not null]
+  "status" TINYINT(4) [not null]
+
+Indexes {
+  extid [name: "Index 2"]
+}
+}
+
+Enum "rules_individual_enum" {
+  "0"
+  "1"
+}
+
+Table "rules" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(75) [not null]
+  "description" TEXT [default: NULL]
+  "state" TINYINT(4) [not null]
+  "individual" rules_individual_enum [not null]
+
+Indexes {
+  name [unique, name: "rules_name"]
+}
+}
+
+Table "sessions" {
+  "id" VARCHAR(255) [pk, not null]
+  "expires" INT(11) [not null, default: "0"]
+  "data" TEXT [default: NULL]
+  "userid" INT(11) [not null, default: "0"]
+
+Indexes {
+  userid [name: "userid"]
+}
+}
+
+Table "tf_protection" {
+  "no" INT(11) [default: NULL]
+  "fullname" VARCHAR(50) [default: NULL]
+  "email" VARCHAR(50) [default: NULL]
+  "phone" VARCHAR(50) [default: NULL]
+  "plat_id" VARCHAR(50) [default: NULL]
+  "reff" VARCHAR(50) [default: NULL]
+  "source" VARCHAR(50) [default: NULL]
+  Note: 'utk pencocokan data docs'
+}
+
+Table "tf2_migrations" {
+  "id" INT(11) [pk, not null, increment]
+  "timestamp" BIGINT(20) [not null]
+  "name" VARCHAR(255) [not null]
+}
+
+Table "tfcampus_attendance" {
+  "id" INT(11) [pk, not null, increment]
+  "registrantid" INT(11) [not null]
+  "scheduleid" INT(11) [not null]
+  "present" TINYINT(4) [not null, default: "0"]
+
+Indexes {
+  (registrantid, scheduleid) [unique, name: "Index 1"]
+}
+}
+
+Table "tfcampus_class_schedule" {
+  "id" INT(11) [pk, not null, increment]
+  "classid" INT(11) [not null]
+  "meet" INT(11) [not null]
+  "start" DATETIME [not null]
+
+Indexes {
+  (classid, meet) [unique, name: "Index 2"]
+}
+}
+
+Table "tfcampus_class" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(50) [not null]
+  "from" DATE [not null]
+  "end" DATE [not null]
+  "capacity" SMALLINT(6) [not null]
+  "price" INT(11) [not null]
+  "cmeet" TINYINT(3) [not null, default: "0"]
+  "cabang" VARCHAR(3) [default: NULL]
+  "city" VARCHAR(50) [default: NULL]
+  "location" TEXT [not null]
+  "map" VARCHAR(50) [not null]
+  "deleted" TINYINT(4) [not null, default: "0"]
+  "extra" TEXT [default: NULL]
+}
+
+Table "tfcampus_invoice" {
+  "id" INT(11) [pk, not null, increment]
+  "notrans" VARCHAR(50) [default: NULL]
+  "registrantid" INT(11) [not null]
+  "classid" INT(11) [not null]
+  "isi" TEXT [default: NULL]
+  "charge" INT(11) [not null]
+  "pay" INT(11) [not null]
+  "discount" INT(11) [not null]
+  "invdate" DATETIME [not null]
+  "due" DATETIME [not null]
+  "deleted" TINYINT(4) [not null, default: "0"]
+
+Indexes {
+  notrans [unique, name: "notrans"]
+}
+}
+
+Table "tfcampus_registration" {
+  "id" INT(11) [pk, not null, increment]
+  "email" VARCHAR(50) [not null]
+  "class" INT(11) [not null]
+  "notelp" VARCHAR(50) [not null]
+  "alamat" TEXT [not null]
+  "experience" TINYINT(4) [not null, default: "0"]
+  "longexp" VARCHAR(50) [default: NULL]
+  "broker" VARCHAR(50) [default: NULL]
+  "jenisacc" VARCHAR(50) [default: NULL]
+  "leverage" VARCHAR(50) [default: NULL]
+  "averagelot" VARCHAR(50) [default: NULL]
+  "umur" INT(3) [not null]
+  "pekerjaan" VARCHAR(50) [not null]
+  "refname" VARCHAR(50) [default: NULL]
+  "method" VARCHAR(50) [default: NULL]
+  "source" VARCHAR(50) [default: NULL]
+  "registered" INT(11) [not null]
+  "reason" VARCHAR(50) [default: NULL]
+  "status" TINYINT(4) [not null, default: "1", note: '0: disable; 1:enable']
+  "params" TEXT [default: NULL]
+}
+
+Table "tfcampus_sent_invoice" {
+  "id" INT(11) [pk, not null, increment]
+  "invoiceid" INT(11) [not null]
+  "sentdate" INT(11) [not null]
+  "userid" INT(11) [not null]
+}
+
+Table "tfcampus_test_importclass" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(50) [not null]
+  "from" DATE [not null]
+  "end" DATE [not null]
+  "capacity" SMALLINT(6) [not null]
+  "price" INT(11) [not null]
+  "cmeet" TINYINT(3) [not null, default: "0"]
+  "city" VARCHAR(50) [default: NULL]
+  "location" TEXT [not null]
+  "map" VARCHAR(50) [not null]
+  "deleted" TINYINT(4) [not null, default: "0"]
+}
+
+Table "tmp_tf5m" {
+  "id" INT(11) [pk, not null, increment]
+  "nama" VARCHAR(128) [default: NULL]
+  "email" VARCHAR(128) [default: NULL]
+  "hp" VARCHAR(50) [default: NULL]
+  "mt4" INT(11) [default: "0"]
+  "password" VARCHAR(50) [default: NULL]
+  "userid" INT(11) [default: NULL]
+  "bank_name" VARCHAR(50) [default: NULL]
+  "bank_accno" VARCHAR(50) [default: NULL]
+  "bank_username" VARCHAR(50) [default: NULL]
+  "channel" VARCHAR(50) [default: NULL]
+  "channel_id" INT(11) [default: NULL]
+  "emailsent" TEXT [default: NULL]
+
+Indexes {
+  email [unique, name: "email"]
+  mt4 [unique, name: "mt4"]
+  userid [unique, name: "userid"]
+}
+}
+
+Table "tmp" {
+  "email" VARCHAR(50) [not null]
+
+Indexes {
+  email [unique, name: "email"]
+}
+}
+
+Table "tp_payment" {
+  "id" INT(11) [pk, not null, increment]
+  "bookingcode" VARCHAR(50) [not null]
+  "bank" VARCHAR(50) [not null]
+  "nominal" INT(11) [not null]
+  "name" VARCHAR(50) [not null]
+  "tanggal" DATETIME [not null]
+  "confirm" TINYINT(4) [not null, default: "0"]
+  "adminid" INT(11) [default: NULL]
+
+Indexes {
+  bookingcode [name: "bookingcode"]
+  adminid [name: "adminid"]
+}
+}
+
+Table "tp_product" {
+  "id" INT(11) [pk, not null, increment]
+  "jenis" VARCHAR(5) [not null]
+  "nominal" INT(11) [not null]
+  "from" DATETIME [not null]
+  "to" DATETIME [not null]
+  "expired" SMALLINT(5) [not null]
+}
+
+Table "tp_purchaselog" {
+  "id" INT(11) [pk, not null, increment]
+  "idnumber" VARCHAR(50) [not null]
+  "name" VARCHAR(50) [not null]
+  "telp" VARCHAR(50) [not null]
+  "email" VARCHAR(50) [not null]
+  "jenis" VARCHAR(5) [not null, note: 'sing=single, coup=group, grou=like a boss']
+  "bookingcode" VARCHAR(50) [not null]
+  "tanggal" DATETIME [not null]
+  "expired" DATETIME [not null]
+  "sent" TINYINT(4) [not null, default: "0"]
+  "adminid" BIGINT(20) [default: NULL]
+
+Indexes {
+  bookingcode [unique, name: "booking"]
+  adminid [name: "adminid"]
+}
+}
+
+Table "traders_agents" {
+  "id" INT(11) [pk, not null, increment]
+  "username" VARCHAR(16) [not null]
+  "name" VARCHAR(20) [not null]
+  "allowip" TEXT [default: NULL]
+
+Indexes {
+  username [unique, name: "Index 2"]
+}
+}
+
+Table "traders_backtest" {
+  "id" INT(11) [pk, not null, increment]
+  "user_id" INT(11) [not null]
+  "method_name" VARCHAR(150) [not null]
+  "modal" DOUBLE [not null]
+  "lot" DOUBLE [not null]
+  "total_pips" INT(11) [not null]
+  "average_pips" INT(11) [not null]
+  "total_profit" DOUBLE [not null]
+  "average_profit" DOUBLE [not null]
+  "total_trade" INT(11) [not null]
+  "probability" DOUBLE [not null]
+  "average_risk_reward" DOUBLE [not null]
+  "consecutive_profit" INT(11) [not null]
+  "consecutive_loss" INT(11) [not null]
+  "file_url" TEXT [default: NULL]
+  "created_at" TIMESTAMP [default: `utc_timestamp()`]
+
+Indexes {
+  user_id [name: "traders_backtest_user_id"]
+}
+}
+
+Table "traders_branch_data_wilayah" {
+  "id" INT(11) [pk, not null, increment]
+  "branch_id" VARCHAR(3) [not null, default: ""]
+  "province_id" VARCHAR(8) [not null, default: ""]
+
+Indexes {
+  (branch_id, province_id) [unique, name: "branch_id"]
+}
+}
+
+Table "traders_branch" {
+  "id" VARCHAR(3) [pk, not null]
+  "name" VARCHAR(30) [not null]
+  "city" VARCHAR(16) [not null]
+  "alamat" TEXT [not null]
+  "params" TEXT [default: NULL]
+}
+
+Table "traders_contact_request" {
+  "id" INT(11) [pk, not null, increment]
+  "waktu" DATETIME [not null]
+  "userid" INT(11) [not null]
+  "phone" VARCHAR(50) [not null]
+  "email" VARCHAR(50) [not null]
+  "notes_internal" TEXT [default: NULL]
+  "notes" TEXT [default: NULL]
+  "comments" TEXT [default: NULL]
+  "status" INT(11) [not null, default: "0", note: '0 Not Processed, 1 Sukses, 2 Failed, 3 Waiting']
+  "source" VARCHAR(50) [not null, note: 'Recommend, Callback']
+  "created_at" DATETIME [default: NULL]
+  "updated_at" DATETIME [default: NULL]
+
+Indexes {
+  userid [name: "USERID"]
+  email [name: "EMAIL"]
+  created_at [name: "created_at"]
+  updated_at [name: "updated_at"]
+}
+}
+
+Table "traders_details" {
+  "userid" INT(5) [pk, not null]
+  "cabang" VARCHAR(3) [default: NULL]
+  "username" VARCHAR(16) [default: NULL]
+  "address1" VARCHAR(100) [default: NULL]
+  "address2" VARCHAR(100) [default: NULL]
+  "city" VARCHAR(20) [default: NULL]
+  "district" VARCHAR(20) [default: NULL]
+  "province" VARCHAR(20) [default: NULL]
+  "zipcode" INT(10) [default: NULL]
+  "avatar" VARCHAR(100) [default: NULL]
+  "aff" TINYINT(4) [not null, default: "0", note: '1=aff, 2=ib']
+  "telegram" VARCHAR(50) [default: NULL]
+  "bigavatar" VARCHAR(100) [default: NULL]
+  "thumb" VARCHAR(100) [default: NULL]
+  "getprotect" TINYINT(3) [not null, default: "0"]
+  "notes" TEXT [default: NULL]
+  "token" VARCHAR(20) [default: NULL]
+  "MODIFY_TIME" BIGINT(20) [not null, default: "0"]
+
+Indexes {
+  token [unique, name: "token"]
+  username [unique, name: "username"]
+  cabang [name: "cabang"]
+}
+}
+
+Table "traders_referral" {
+  "userid" INT(11) [pk, not null]
+  "parent" INT(11) [not null]
+  "marketing" INT(11) [not null, default: "0"]
+  "regdate" INT(11) [default: NULL]
+  "MODIFY_TIME" BIGINT(20) [not null]
+}
+
+Table "url_before_register" {
+  "userid" INT(11) [not null, increment]
+  "order" TINYINT(4) [not null, default: "1"]
+  "fullurl" TEXT [default: NULL]
+  "MODIFY_TIME" BIGINT(20) [not null]
+
+Indexes {
+  (userid, order) [pk]
+}
+}
+
+Table "user_analytics_history" {
+  "userid" INT(11) [pk, not null]
+  "waktu" DATETIME [not null]
+  "ad_id" INT(11) [default: NULL]
+  "adgroup_id" INT(11) [default: NULL]
+  "campaign_id" INT(11) [default: NULL]
+  "visit" TEXT [default: NULL]
+  "source" VARCHAR(50) [default: NULL]
+  "medium" VARCHAR(50) [default: NULL]
+  "ref" TEXT [default: NULL]
+  "campaign" VARCHAR(50) [default: NULL]
+  "content" VARCHAR(50) [default: NULL]
+  "last_ref" TEXT [default: NULL]
+  "last_campaign" VARCHAR(50) [default: NULL]
+  "last_content" VARCHAR(50) [default: NULL]
+  "client_id" VARCHAR(128) [default: NULL]
+}
+
+Table "user_analytics" {
+  "userid" INT(11) [pk, not null]
+  "ad_id" INT(11) [default: NULL]
+  "adgroup_id" INT(11) [default: NULL]
+  "campaign_id" INT(11) [default: NULL]
+  "first_ad_id" INT(11) [default: NULL]
+  "first_adgroup_id" INT(11) [default: NULL]
+  "first_campaign_id" INT(11) [default: NULL]
+  "first_visit" TEXT [default: NULL]
+  "first_source" VARCHAR(50) [default: NULL]
+  "first_medium" VARCHAR(50) [default: NULL]
+  "first_ref" TEXT [default: NULL]
+  "first_campaign" VARCHAR(50) [default: NULL]
+  "first_content" VARCHAR(50) [default: NULL]
+  "last_ad_id" INT(11) [default: NULL]
+  "last_adgroup_id" INT(11) [default: NULL]
+  "last_campaign_id" INT(11) [default: NULL]
+  "last_visit" TEXT [default: NULL]
+  "last_source" VARCHAR(50) [default: NULL]
+  "last_medium" VARCHAR(50) [default: NULL]
+  "last_ref" TEXT [default: NULL]
+  "last_campaign" VARCHAR(50) [default: NULL]
+  "last_content" VARCHAR(50) [default: NULL]
+  "client_id" VARCHAR(128) [default: NULL]
+}
+
+Enum "user_tracking_tags_type_enum" {
+  "video"
+  "scroll"
+  "form"
+  "timeonpage"
+  "button"
+}
+
+Table "user_tracking_tags" {
+  "id" INT(11) [pk, not null, increment]
+  "type" user_tracking_tags_type_enum [default: NULL]
+  "name" VARCHAR(50) [not null, default: ""]
+  "description" TEXT [default: NULL]
+  "event" TEXT [default: NULL]
+  "created_at" DATETIME [default: NULL]
+  "updated_at" DATETIME [default: NULL]
+
+Indexes {
+  name [unique, name: "name"]
+  type [name: "type"]
+}
+}
+
+Table "user_tracking" {
+  "id" INT(11) [pk, not null, increment]
+  "user_id" INT(11) [not null]
+  "email" VARCHAR(255) [default: NULL]
+  "tag_id" INT(11) [default: NULL]
+  "value" TEXT [default: NULL]
+  "created_at" DATETIME [default: NULL]
+  "updated_at" DATETIME [default: NULL]
+
+Indexes {
+  user_id [name: "user_id"]
+  email [name: "email"]
+  tag_id [name: "tag_id"]
+}
+}
+
+Table "user_usergroup" {
+  "userid" INT(5) [not null, increment]
+  "level" INT(1) [not null, default: "1"]
+
+Indexes {
+  (userid, level) [pk]
+}
+}
+
+Table "usergroups" {
+  "id" INT(11) [pk, not null, increment]
+  "path" TEXT [not null]
+  "groupname" VARCHAR(40) [not null]
+}
+
+Table "users_rules" {
+  "userid" INT(11) [not null]
+  "ruleid" INT(11) [not null]
+
+Indexes {
+  userid [name: "userid"]
+  (userid, ruleid) [pk]
+}
+}
+
+Table "users" {
+  "id" INT(5) [pk, not null, increment]
+  "email" VARCHAR(50) [not null]
+  "password" VARCHAR(75) [not null]
+  "fullname" VARCHAR(50) [not null]
+  "phone" VARCHAR(50) [not null]
+  "country" VARCHAR(50) [default: NULL]
+  "tglaktif" INT(10) [not null]
+  "first_visit" TEXT [default: NULL]
+  "first_referrer" TEXT [default: NULL]
+  "last_referrer" TEXT [default: NULL]
+  "goal_referrer" TEXT [default: NULL]
+  "last_visit" INT(10) [not null, default: "0"]
+  "utm_campaign" VARCHAR(128) [default: NULL]
+  "utm_source" VARCHAR(128) [default: NULL]
+  "utm_medium" VARCHAR(128) [default: NULL]
+  "utm_term" VARCHAR(128) [default: NULL]
+  "utm_content" VARCHAR(128) [default: NULL]
+  "campaignid" VARCHAR(128) [default: NULL]
+  "adgroupid" VARCHAR(128) [default: NULL]
+  "adid" VARCHAR(128) [default: NULL]
+  "gclid" VARCHAR(255) [default: NULL]
+  "pathdir" VARCHAR(6) [default: NULL]
+  "facebook" BIGINT(15) [not null, default: "0"]
+  "google" INT(1) [not null, default: "0", note: '1: register, 2: used login only']
+  "yahoo" INT(1) [not null, default: "0"]
+  "last_reset" INT(11) [default: NULL]
+  "alumni" TINYINT(4) [not null, default: "0"]
+  "deleted" TINYINT(4) [not null, default: "0"]
+  "subscribe" TINYINT(4) [not null, default: "0"]
+  "protection" TINYINT(4) [not null, default: "0"]
+  "verify" TINYINT(4) [not null, default: "0"]
+  "language" VARCHAR(50) [default: NULL]
+  "fbtoken" VARCHAR(255) [default: NULL]
+  "MODIFY_TIME" BIGINT(20) [not null, default: "0"]
+
+Indexes {
+  fbtoken [unique, name: "fbtoken"]
+  email [name: "email"]
+  tglaktif [name: "tglaktif"]
+  utm_campaign [name: "utm_campaign"]
+  utm_source [name: "utm_source"]
+  utm_medium [name: "utm_medium"]
+  utm_term [name: "utm_term"]
+  campaignid [name: "campaignid"]
+  adgroupid [name: "adgroupid"]
+  adid [name: "adid"]
+  gclid [name: "gclid"]
+  utm_content [name: "utm_content"]
+}
+}
+
+Table "utm_dict" {
+  "id" INT(11) [pk, not null, increment]
+  "utm_source" VARCHAR(128) [not null]
+  "utm_medium" VARCHAR(128) [not null]
+  "utm_term" VARCHAR(128) [default: NULL]
+  "utm_campaign" VARCHAR(128) [default: NULL]
+  "main_url" VARCHAR(255) [not null]
+  "full_url" VARCHAR(255) [not null]
+  "short_url" VARCHAR(255) [default: NULL]
+  "created_at" TIMESTAMP [default: `utc_timestamp()`]
+  "updated_at" TIMESTAMP [default: `utc_timestamp()`]
+
+Indexes {
+  full_url [unique, name: "full_url"]
+  utm_source [name: "utm_source"]
+  utm_medium [name: "utm_medium"]
+  utm_campaign [name: "utm_campaign"]
+  utm_term [name: "utm_term"]
+  short_url [name: "short_url"]
+  created_at [name: "created_at"]
+  updated_at [name: "updated_at"]
+}
+}
+
+
+
+

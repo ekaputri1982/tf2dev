@@ -1,0 +1,12 @@
+Table "routines" {
+  "id" INT(11) [pk, not null, increment]
+  "extid" INT(11) [not null]
+  "cron" TEXT [not null]
+  "file" TEXT [not null]
+  "fn" VARCHAR(50) [not null]
+  "status" TINYINT(4) [not null]
+
+Indexes {
+  extid [name: "Index 2"]
+}
+}

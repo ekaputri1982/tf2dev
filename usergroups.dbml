@@ -1,0 +1,5 @@
+Table "usergroups" {
+  "id" INT(11) [pk, not null, increment]
+  "path" TEXT [not null]
+  "groupname" VARCHAR(40) [not null]
+}

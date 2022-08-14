@@ -1,0 +1,14 @@
+Table "logs" {
+  "id" INT(10) [pk, not null, increment]
+  "user_id" INT(5) [not null]
+  "action" VARCHAR(100) [not null]
+  "ip" VARCHAR(15) [not null]
+  "browser" VARCHAR(200) [not null]
+  "time" INT(10) [not null]
+  "notes" TEXT [default: NULL]
+  "target" INT(11) [not null, default: "0"]
+
+Indexes {
+  user_id [name: "user_id"]
+}
+}

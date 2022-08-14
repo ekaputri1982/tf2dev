@@ -1,0 +1,9 @@
+Table "badwords" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(128) [not null]
+  "exact" TINYINT(4) [not null, default: "0"]
+
+Indexes {
+  name [name: "name"]
+}
+}

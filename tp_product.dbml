@@ -1,0 +1,8 @@
+Table "tp_product" {
+  "id" INT(11) [pk, not null, increment]
+  "jenis" VARCHAR(5) [not null]
+  "nominal" INT(11) [not null]
+  "from" DATETIME [not null]
+  "to" DATETIME [not null]
+  "expired" SMALLINT(5) [not null]
+}

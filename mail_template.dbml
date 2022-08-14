@@ -1,0 +1,9 @@
+Table "mail_template" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(50) [not null]
+  "template" TEXT [default: NULL]
+
+Indexes {
+  name [unique, name: "name"]
+}
+}

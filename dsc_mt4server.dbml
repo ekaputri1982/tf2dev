@@ -1,0 +1,12 @@
+Table "dsc_mt4server" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(50) [not null]
+  "host" VARCHAR(128) [not null]
+  "port" INT(11) [not null, default: "443"]
+  "host_backup" VARCHAR(128) [not null]
+  "port_backup" INT(11) [not null, default: "443"]
+  "manager" INT(11) [not null]
+  "gmt" TINYINT(4) [not null, default: "0"]
+  "direct" TINYINT(4) [not null, default: "0"]
+  "real" TINYINT(4) [not null, default: "1"]
+}

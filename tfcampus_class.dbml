@@ -1,0 +1,15 @@
+Table "tfcampus_class" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(50) [not null]
+  "from" DATE [not null]
+  "end" DATE [not null]
+  "capacity" SMALLINT(6) [not null]
+  "price" INT(11) [not null]
+  "cmeet" TINYINT(3) [not null, default: "0"]
+  "cabang" VARCHAR(3) [default: NULL]
+  "city" VARCHAR(50) [default: NULL]
+  "location" TEXT [not null]
+  "map" VARCHAR(50) [not null]
+  "deleted" TINYINT(4) [not null, default: "0"]
+  "extra" TEXT [default: NULL]
+}

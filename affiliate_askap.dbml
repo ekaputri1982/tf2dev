@@ -1,0 +1,10 @@
+Table "affiliate_askap" {
+  "userid" INT(11) [pk, not null]
+  "askapid" INT(11) [not null]
+  "askapparentid" INT(11) [not null, default: "0"]
+  "askapusername" VARCHAR(75) [not null, default: ""]
+  "askaptelp" VARCHAR(25) [not null, default: ""]
+  "registerdate" INT(11) [default: NULL]
+  "invest" TINYINT(4) [not null, default: "0"]
+  "MODIFY_TIME" BIGINT(20) [not null]
+}

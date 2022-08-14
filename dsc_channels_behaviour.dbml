@@ -1,0 +1,7 @@
+Table "dsc_channels_behaviour" {
+  "id" INT(11) [pk, not null, increment]
+  "channel_id" INT(11) [not null]
+  "period" DATE [default: `utc_timestamp()`]
+  "category" LONGTEXT [default: NULL]
+  "behaviour" INT(1) [not null]
+}

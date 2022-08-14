@@ -1,0 +1,11 @@
+Table "modules" {
+  "id" INT(11) [pk, not null, increment]
+  "title" VARCHAR(20) [not null]
+  "name" VARCHAR(75) [not null]
+  "position" VARCHAR(20) [not null]
+  "note" VARCHAR(20) [not null]
+  "pages" TEXT [not null]
+  "params" TEXT [not null]
+  "ord" TINYINT(4) [not null]
+  "active" TINYINT(4) [not null]
+}

@@ -1,0 +1,20 @@
+Table "mail_temp" {
+  "id" INT(11) [pk, not null, increment]
+  "title" TEXT [not null]
+  "subject" TEXT [not null]
+  "from_name" VARCHAR(50) [not null]
+  "from_mail" VARCHAR(50) [not null]
+  "to_name" VARCHAR(50) [not null]
+  "to_mail" VARCHAR(50) [not null]
+  "bcc_name" VARCHAR(50) [default: NULL]
+  "bcc_mail" VARCHAR(50) [default: NULL]
+  "replyto_name" VARCHAR(50) [not null]
+  "replyto_mail" VARCHAR(50) [not null]
+  "content" TEXT [not null]
+  "template_id" INT(11) [default: NULL]
+  "hook" INT(11) [default: NULL]
+
+Indexes {
+  template_id [name: "mail_temp_template_id"]
+}
+}

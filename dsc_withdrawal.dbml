@@ -1,0 +1,14 @@
+Table "dsc_withdrawal" {
+  "id" INT(11) [pk, not null, increment]
+  "channel_id" INT(11) [not null]
+  "nominal" DOUBLE [not null]
+  "verify" TINYINT(4) [not null, default: "0", note: '0 : waiting, 2 : done, 1 : refused; 3 : comission']
+  "verifier" INT(11) [default: NULL]
+  "verified_at" DATETIME [default: NULL]
+  "CREATED_AT" DATETIME [not null, default: `utc_timestamp()`]
+  "MODIFIED_AT" DATETIME [not null, default: `utc_timestamp()`]
+
+Indexes {
+  channel_id [name: "channel_id"]
+}
+}

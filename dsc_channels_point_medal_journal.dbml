@@ -1,0 +1,16 @@
+Table "dsc_channels_point_medal_journal" {
+  "id" INT(11) [pk, not null, increment]
+  "channel_id" INT(11) [not null]
+  "point" DOUBLE [not null, default: "0"]
+  "medal" INT(11) [not null, default: "0"]
+  "utc_insert_at" DATETIME [default: NULL]
+  "reason" VARCHAR(255) [default: NULL]
+
+Indexes {
+  reason [unique, name: "reason"]
+  channel_id [name: "channel_id"]
+  point [name: "point"]
+  utc_insert_at [name: "utc_insert_at"]
+  medal [name: "medal"]
+}
+}

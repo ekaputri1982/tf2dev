@@ -1,0 +1,11 @@
+Table "dsc_search_logs" {
+  "id" INT(11) [pk, not null, increment]
+  "user_id" INT(10) [not null]
+  "term" VARCHAR(100) [not null, default: ""]
+  "ip" VARCHAR(50) [not null, default: ""]
+  "date" DATETIME [not null]
+
+Indexes {
+  user_id [name: "user_id"]
+}
+}

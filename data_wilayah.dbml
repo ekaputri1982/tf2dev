@@ -1,0 +1,18 @@
+Enum "data_wilayah_LEVEL_enum" {
+  "1"
+  "2"
+  "3"
+  "4"
+}
+
+Table "data_wilayah" {
+  "KODE_WILAYAH" VARCHAR(8) [pk, not null]
+  "MST_KODE_WILAYAH" VARCHAR(8) [not null]
+  "NAMA" VARCHAR(255) [not null]
+  "LEVEL" data_wilayah_LEVEL_enum [not null]
+
+Indexes {
+  (MST_KODE_WILAYAH, KODE_WILAYAH) [unique, name: "UNIQUE"]
+}
+}
+

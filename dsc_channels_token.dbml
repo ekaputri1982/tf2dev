@@ -1,0 +1,20 @@
+Enum "dsc_channels_token_unit_enum" {
+  "day"
+  "month"
+  "year"
+}
+
+Table "dsc_channels_token" {
+  "id" INT(11) [pk, not null, increment]
+  "channel_id" INT(11) [not null]
+  "token" VARCHAR(20) [not null, default: "", note: 'Tipe datanya belum tau mau apa']
+  "subs_id" INT(11) [default: NULL]
+  "qty" INT(11) [not null, default: "1"]
+  "unit" dsc_channels_token_unit_enum [not null, default: "month"]
+  "CREATED_AT" TIMESTAMP [not null, default: `current_timestamp()`]
+  "EXPIRED_AT" TIMESTAMP [not null, default: "0000-00-00 00:00:00"]
+
+Indexes {
+  token [unique, name: "token"]
+}
+}

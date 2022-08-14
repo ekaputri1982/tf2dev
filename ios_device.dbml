@@ -1,0 +1,12 @@
+Table "ios_device" {
+  "uuid" VARCHAR(50) [pk, not null, default: ""]
+  "logged" TINYINT(4) [not null, default: "0"]
+  "userid" INT(11) [default: NULL]
+  "params" TEXT [default: NULL]
+  "created" INT(11) [not null]
+  "MODIFIED" INT(11) [not null]
+
+Indexes {
+  (userid, logged) [unique, name: "userid"]
+}
+}

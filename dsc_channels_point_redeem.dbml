@@ -1,0 +1,24 @@
+Table "dsc_channels_point_redeem" {
+  "id" INT(11) [pk, not null, increment]
+  "journal_id" INT(11) [not null]
+  "adj_id" INT(11) [default: NULL]
+  "channel_id" INT(11) [not null]
+  "medal" TINYINT(4) [not null, default: "0"]
+  "point" DOUBLE(22,0) [not null, default: "0"]
+  "status" TINYINT(4) [default: "0", note: '0: Waiting, 1: Processed, 2: Cancelled']
+  "admin_id" INT(11) [default: NULL]
+  "created_at" DATETIME [default: `utc_timestamp()`]
+  "updated_at" DATETIME [default: `utc_timestamp()`]
+  "money" INT(11) [not null, default: "0"]
+
+Indexes {
+  channel_id [name: "channel_id"]
+  admin_id [name: "admin_id"]
+  journal_id [name: "journal_id"]
+  medal [name: "medal"]
+  point [name: "point"]
+  status [name: "status"]
+  created_at [name: "created_at"]
+  updated_at [name: "updated_at"]
+}
+}

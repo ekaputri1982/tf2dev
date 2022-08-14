@@ -1,0 +1,6 @@
+Table "ebook" {
+  "id" INT(11) [pk, not null, increment]
+  "judul" VARCHAR(50) [not null]
+  "ringkasan" TEXT [not null]
+  "status" TINYINT(4) [not null, default: "1"]
+}

@@ -1,0 +1,12 @@
+Table "mtf_signals" {
+  "id" INT(11) [pk, not null, increment]
+  "user_id" INT(11) [not null]
+  "symbol" VARCHAR(30) [not null]
+  "op" TINYINT(4) [not null]
+  "price" VARCHAR(50) [not null]
+  "sl" VARCHAR(50) [not null]
+  "tp" VARCHAR(50) [not null]
+  "active" TINYINT(4) [not null, default: "1"]
+  "CREATED_AT" BIGINT(20) [default: NULL]
+  "MODIFY_TIME" BIGINT(20) [default: NULL]
+}

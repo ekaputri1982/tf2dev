@@ -1,0 +1,8 @@
+Table "user_usergroup" {
+  "userid" INT(5) [not null, increment]
+  "level" INT(1) [not null, default: "1"]
+
+Indexes {
+  (userid, level) [pk]
+}
+}

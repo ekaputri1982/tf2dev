@@ -1,0 +1,4 @@
+Table "fxd_page" {
+  "name" VARCHAR(24) [pk, not null]
+  "val" VARCHAR(24) [default: NULL]
+}

@@ -1,0 +1,4 @@
+Table "mrg_settings" {
+  "name" VARCHAR(50) [pk, not null]
+  "value" VARCHAR(50) [default: NULL]
+}

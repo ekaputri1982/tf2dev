@@ -1,0 +1,26 @@
+Table "traders_details" {
+  "userid" INT(5) [pk, not null]
+  "cabang" VARCHAR(3) [default: NULL]
+  "username" VARCHAR(16) [default: NULL]
+  "address1" VARCHAR(100) [default: NULL]
+  "address2" VARCHAR(100) [default: NULL]
+  "city" VARCHAR(20) [default: NULL]
+  "district" VARCHAR(20) [default: NULL]
+  "province" VARCHAR(20) [default: NULL]
+  "zipcode" INT(10) [default: NULL]
+  "avatar" VARCHAR(100) [default: NULL]
+  "aff" TINYINT(4) [not null, default: "0", note: '1=aff, 2=ib']
+  "telegram" VARCHAR(50) [default: NULL]
+  "bigavatar" VARCHAR(100) [default: NULL]
+  "thumb" VARCHAR(100) [default: NULL]
+  "getprotect" TINYINT(3) [not null, default: "0"]
+  "notes" TEXT [default: NULL]
+  "token" VARCHAR(20) [default: NULL]
+  "MODIFY_TIME" BIGINT(20) [not null, default: "0"]
+
+Indexes {
+  token [unique, name: "token"]
+  username [unique, name: "username"]
+  cabang [name: "cabang"]
+}
+}

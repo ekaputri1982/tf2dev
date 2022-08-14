@@ -1,0 +1,7 @@
+Table "dsc_assistants" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(50) [not null]
+  "description" TEXT [default: NULL]
+  "param" TEXT [default: NULL]
+  "price" DOUBLE [not null, default: "0"]
+}

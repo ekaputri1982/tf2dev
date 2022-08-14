@@ -1,0 +1,12 @@
+Table "easy_users" {
+  "id" VARCHAR(50) [pk, not null, default: ""]
+  "account" INT(11) [not null]
+  "broker" VARCHAR(50) [not null]
+  "params" TEXT [default: NULL]
+  "created" INT(11) [not null]
+  "MODIFIED" INT(11) [not null]
+
+Indexes {
+  (broker, account) [unique, name: "acc"]
+}
+}

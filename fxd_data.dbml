@@ -1,0 +1,10 @@
+Table "fxd_data" {
+  "year" INT(11) [not null]
+  "month" INT(11) [not null]
+  "start" DOUBLE [not null]
+  "end" DOUBLE [not null]
+
+Indexes {
+  (year, month) [pk]
+}
+}

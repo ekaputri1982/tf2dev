@@ -1,0 +1,23 @@
+Table "utm_dict" {
+  "id" INT(11) [pk, not null, increment]
+  "utm_source" VARCHAR(128) [not null]
+  "utm_medium" VARCHAR(128) [not null]
+  "utm_term" VARCHAR(128) [default: NULL]
+  "utm_campaign" VARCHAR(128) [default: NULL]
+  "main_url" VARCHAR(255) [not null]
+  "full_url" VARCHAR(255) [not null]
+  "short_url" VARCHAR(255) [default: NULL]
+  "created_at" TIMESTAMP [default: `utc_timestamp()`]
+  "updated_at" TIMESTAMP [default: `utc_timestamp()`]
+
+Indexes {
+  full_url [unique, name: "full_url"]
+  utm_source [name: "utm_source"]
+  utm_medium [name: "utm_medium"]
+  utm_campaign [name: "utm_campaign"]
+  utm_term [name: "utm_term"]
+  short_url [name: "short_url"]
+  created_at [name: "created_at"]
+  updated_at [name: "updated_at"]
+}
+}

@@ -1,0 +1,10 @@
+Table "tfcampus_attendance" {
+  "id" INT(11) [pk, not null, increment]
+  "registrantid" INT(11) [not null]
+  "scheduleid" INT(11) [not null]
+  "present" TINYINT(4) [not null, default: "0"]
+
+Indexes {
+  (registrantid, scheduleid) [unique, name: "Index 1"]
+}
+}

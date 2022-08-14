@@ -1,0 +1,14 @@
+Table "mail_party" {
+  "id" INT(11) [pk, not null, increment]
+  "title" TEXT [not null]
+  "subject" TEXT [not null]
+  "from_name" VARCHAR(50) [not null]
+  "from_mail" VARCHAR(50) [not null]
+  "to_name" VARCHAR(50) [not null]
+  "to_mail" VARCHAR(50) [not null]
+  "bcc_name" VARCHAR(100) [default: NULL]
+  "bcc_mail" VARCHAR(100) [default: NULL]
+  "replyto_name" VARCHAR(50) [not null]
+  "replyto_mail" VARCHAR(50) [not null]
+  "content" TEXT [not null]
+}

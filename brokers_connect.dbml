@@ -1,0 +1,5 @@
+Table "brokers_connect" {
+  "userid" INT(11) [pk, not null]
+  "brokers" INT(11) [not null]
+  "buid" INT(11) [not null]
+}

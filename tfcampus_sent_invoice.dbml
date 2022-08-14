@@ -1,0 +1,6 @@
+Table "tfcampus_sent_invoice" {
+  "id" INT(11) [pk, not null, increment]
+  "invoiceid" INT(11) [not null]
+  "sentdate" INT(11) [not null]
+  "userid" INT(11) [not null]
+}

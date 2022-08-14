@@ -1,0 +1,22 @@
+Table "traders_backtest" {
+  "id" INT(11) [pk, not null, increment]
+  "user_id" INT(11) [not null]
+  "method_name" VARCHAR(150) [not null]
+  "modal" DOUBLE [not null]
+  "lot" DOUBLE [not null]
+  "total_pips" INT(11) [not null]
+  "average_pips" INT(11) [not null]
+  "total_profit" DOUBLE [not null]
+  "average_profit" DOUBLE [not null]
+  "total_trade" INT(11) [not null]
+  "probability" DOUBLE [not null]
+  "average_risk_reward" DOUBLE [not null]
+  "consecutive_profit" INT(11) [not null]
+  "consecutive_loss" INT(11) [not null]
+  "file_url" TEXT [default: NULL]
+  "created_at" TIMESTAMP [default: `utc_timestamp()`]
+
+Indexes {
+  user_id [name: "traders_backtest_user_id"]
+}
+}

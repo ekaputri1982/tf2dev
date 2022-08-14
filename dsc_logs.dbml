@@ -1,0 +1,10 @@
+Table "dsc_logs" {
+  "id" INT(11) [pk, not null, increment]
+  "ip" VARCHAR(50) [not null, default: ""]
+  "log" TEXT [not null, default: ""]
+  "created_at" DATETIME [default: "1970-01-01 00:00:00"]
+
+Indexes {
+  `log(200)` [name: "log"]
+}
+}

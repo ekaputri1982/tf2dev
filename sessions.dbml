@@ -1,0 +1,10 @@
+Table "sessions" {
+  "id" VARCHAR(255) [pk, not null]
+  "expires" INT(11) [not null, default: "0"]
+  "data" TEXT [default: NULL]
+  "userid" INT(11) [not null, default: "0"]
+
+Indexes {
+  userid [name: "userid"]
+}
+}

@@ -1,0 +1,21 @@
+Table "tmp_tf5m" {
+  "id" INT(11) [pk, not null, increment]
+  "nama" VARCHAR(128) [default: NULL]
+  "email" VARCHAR(128) [default: NULL]
+  "hp" VARCHAR(50) [default: NULL]
+  "mt4" INT(11) [default: "0"]
+  "password" VARCHAR(50) [default: NULL]
+  "userid" INT(11) [default: NULL]
+  "bank_name" VARCHAR(50) [default: NULL]
+  "bank_accno" VARCHAR(50) [default: NULL]
+  "bank_username" VARCHAR(50) [default: NULL]
+  "channel" VARCHAR(50) [default: NULL]
+  "channel_id" INT(11) [default: NULL]
+  "emailsent" TEXT [default: NULL]
+
+Indexes {
+  email [unique, name: "email"]
+  mt4 [unique, name: "mt4"]
+  userid [unique, name: "userid"]
+}
+}

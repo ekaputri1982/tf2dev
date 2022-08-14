@@ -1,0 +1,10 @@
+Table "tfcampus_class_schedule" {
+  "id" INT(11) [pk, not null, increment]
+  "classid" INT(11) [not null]
+  "meet" INT(11) [not null]
+  "start" DATETIME [not null]
+
+Indexes {
+  (classid, meet) [unique, name: "Index 2"]
+}
+}

@@ -1,0 +1,10 @@
+Table "affiliate_mrg" {
+  "userid" INT(11) [pk, not null]
+  "mrgid" INT(11) [not null]
+  "mrgparentid" INT(11) [not null, default: "0"]
+  "mrgusername" VARCHAR(75) [not null, default: ""]
+  "mrgtelp" VARCHAR(25) [not null, default: ""]
+  "registerdate" INT(11) [default: NULL]
+  "invest" TINYINT(4) [not null, default: "0"]
+  "MODIFY_TIME" BIGINT(20) [not null]
+}

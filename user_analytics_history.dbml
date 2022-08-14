@@ -1,0 +1,17 @@
+Table "user_analytics_history" {
+  "userid" INT(11) [pk, not null]
+  "waktu" DATETIME [not null]
+  "ad_id" INT(11) [default: NULL]
+  "adgroup_id" INT(11) [default: NULL]
+  "campaign_id" INT(11) [default: NULL]
+  "visit" TEXT [default: NULL]
+  "source" VARCHAR(50) [default: NULL]
+  "medium" VARCHAR(50) [default: NULL]
+  "ref" TEXT [default: NULL]
+  "campaign" VARCHAR(50) [default: NULL]
+  "content" VARCHAR(50) [default: NULL]
+  "last_ref" TEXT [default: NULL]
+  "last_campaign" VARCHAR(50) [default: NULL]
+  "last_content" VARCHAR(50) [default: NULL]
+  "client_id" VARCHAR(128) [default: NULL]
+}

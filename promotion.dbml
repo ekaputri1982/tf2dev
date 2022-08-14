@@ -1,0 +1,10 @@
+Table "promotion" {
+  "id" INT(11) [pk, not null, increment]
+  "title" VARCHAR(45) [not null]
+  "url_link" TEXT [not null]
+  "url_img" TEXT [not null]
+  "status" TINYINT(1) [not null, default: "0", note: '0 : tidak aktif ; 1 : aktif']
+  "created_at" DATETIME [not null]
+  "updated_at" DATETIME [not null]
+  "published_at" DATETIME [not null]
+}

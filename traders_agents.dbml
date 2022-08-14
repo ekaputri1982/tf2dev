@@ -1,0 +1,10 @@
+Table "traders_agents" {
+  "id" INT(11) [pk, not null, increment]
+  "username" VARCHAR(16) [not null]
+  "name" VARCHAR(20) [not null]
+  "allowip" TEXT [default: NULL]
+
+Indexes {
+  username [unique, name: "Index 2"]
+}
+}

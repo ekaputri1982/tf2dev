@@ -1,0 +1,19 @@
+Table "mtf_inbox_user" {
+  "msgid" INT(11) [not null]
+  "userid" INT(11) [not null]
+  "sent" TINYINT(4) [not null, default: "0"]
+  "baca" TINYINT(4) [not null, default: "0"]
+  "deleted" TINYINT(4) [not null, default: "0"]
+  "email" VARCHAR(255) [default: NULL]
+  "MODIFIED" INT(11) [not null, default: `unix_timestamp()`]
+
+Indexes {
+  email [name: "Index 2"]
+  baca [name: "baca"]
+  deleted [name: "deleted"]
+  MODIFIED [name: "modified"]
+  sent [name: "sent"]
+  userid [name: "userid"]
+  (msgid, userid) [pk]
+}
+}

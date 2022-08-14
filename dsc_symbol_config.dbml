@@ -1,0 +1,4 @@
+Table "dsc_symbol_config" {
+  "symbol" VARCHAR(30) [pk, not null]
+  "digit" TINYINT(4) [not null]
+}

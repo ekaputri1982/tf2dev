@@ -1,0 +1,5 @@
+Table "dump" {
+  "em" VARCHAR(50) [not null]
+  "name" TEXT [not null]
+  "dt" DATETIME [not null]
+}

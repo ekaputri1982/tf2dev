@@ -1,0 +1,20 @@
+Table "dsc_subs" {
+  "id" INT(11) [pk, not null, increment]
+  "channel_id" INT(11) [not null]
+  "user_id" INT(11) [not null]
+  "subs" TINYINT(4) [default: "1"]
+  "paid" INT(11) [not null, default: "0"]
+  "mute" TINYINT(4) [not null, default: "0"]
+  "CREATED_AT" TIMESTAMP [default: NULL]
+  "EXPIRED" TIMESTAMP [default: NULL]
+  "MODIFIY_TIME" TIMESTAMP [default: NULL]
+
+Indexes {
+  (channel_id, user_id) [name: "user_channel"]
+  paid [name: "paid"]
+  EXPIRED [name: "EXPIRED"]
+  subs [name: "subs"]
+  (channel_id, EXPIRED) [name: "channel_expired"]
+}
+}
+

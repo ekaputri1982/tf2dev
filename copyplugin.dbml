@@ -1,0 +1,9 @@
+Table "copyplugin" {
+  "userid" INT(11) [not null]
+  "platform_id" VARCHAR(50) [not null]
+  "broker" VARCHAR(50) [default: NULL]
+
+Indexes {
+  (userid, platform_id) [pk]
+}
+}

@@ -1,0 +1,11 @@
+Table "register_source" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(20) [not null]
+  "uri" TEXT [not null]
+  "route" TEXT [not null]
+  "force" TINYINT(1) [not null, note: '0: must fills profile details || 1: without fills profile details ']
+
+Indexes {
+  name [unique, name: "name"]
+}
+}

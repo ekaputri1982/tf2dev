@@ -1,0 +1,10 @@
+Table "dsc_subs_auto_copy" {
+  "id" INT(11) [pk, not null, increment]
+  "channelid" INT(11) [default: NULL]
+  "user_id" INT(11) [default: NULL]
+  "mt4server" INT(11) [default: NULL]
+  "account" INT(11) [default: NULL]
+  "volume" INT(11) [default: NULL]
+  "symbol" VARCHAR(16) [default: NULL]
+  "symbol_map" VARCHAR(16) [default: NULL]
+}

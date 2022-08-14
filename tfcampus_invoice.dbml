@@ -1,0 +1,17 @@
+Table "tfcampus_invoice" {
+  "id" INT(11) [pk, not null, increment]
+  "notrans" VARCHAR(50) [default: NULL]
+  "registrantid" INT(11) [not null]
+  "classid" INT(11) [not null]
+  "isi" TEXT [default: NULL]
+  "charge" INT(11) [not null]
+  "pay" INT(11) [not null]
+  "discount" INT(11) [not null]
+  "invdate" DATETIME [not null]
+  "due" DATETIME [not null]
+  "deleted" TINYINT(4) [not null, default: "0"]
+
+Indexes {
+  notrans [unique, name: "notrans"]
+}
+}

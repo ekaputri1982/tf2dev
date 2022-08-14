@@ -1,0 +1,9 @@
+Table "dsc_payment_channel" {
+  "id" INT(11) [pk, not null]
+  "name" VARCHAR(32) [not null]
+  "active" TINYINT(4) [not null, default: "1"]
+  "email" INT(11) [not null, default: "0"]
+  "fee_fixed" DOUBLE [default: "0"]
+  "fee_rate" FLOAT [default: "0"]
+  Note: 'Payment Channel available for Traders family'
+}

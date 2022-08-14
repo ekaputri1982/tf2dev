@@ -1,0 +1,14 @@
+Table "dsc_users" {
+  "userid" INT(11) [pk, not null]
+  "pubkey" VARCHAR(50) [default: NULL]
+  "seckey" VARCHAR(50) [default: NULL]
+  "expires" INT(11) [not null, default: "0"]
+  "ip" TEXT [default: NULL]
+  "bank_name" VARCHAR(50) [default: NULL]
+  "bank_accno" VARCHAR(50) [default: NULL]
+  "bank_username" VARCHAR(50) [default: NULL]
+
+Indexes {
+  pubkey [name: "pubkey"]
+}
+}

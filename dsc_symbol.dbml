@@ -1,0 +1,11 @@
+Table "dsc_symbol" {
+  "id" INT(11) [pk, not null, increment]
+  "main" VARCHAR(16) [not null]
+  "name" VARCHAR(16) [not null]
+  "security" VARCHAR(16) [default: NULL]
+
+Indexes {
+  (main, security) [unique, name: "UniqueSym"]
+  security [name: "FK_gc_symbol_gc_securities"]
+}
+}

@@ -1,0 +1,9 @@
+Table "dsc_channels_state" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(50) [not null, default: ""]
+  "multiplier" DOUBLE [not null]
+
+Indexes {
+  name [name: "name"]
+}
+}

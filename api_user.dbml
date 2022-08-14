@@ -1,0 +1,15 @@
+Table "api_user" {
+  "clientid" INT(11) [pk, not null, increment]
+  "userid" INT(5) [not null]
+  "clientname" VARCHAR(20) [not null]
+  "clientip" TEXT [not null]
+  "api_key" VARCHAR(20) [not null]
+  "active" SMALLINT(1) [not null, default: "1"]
+  "ValidateEmail" SMALLINT(1) [not null, default: "0"]
+  "GetChannels" SMALLINT(1) [not null, default: "0"]
+  "PostSignal" SMALLINT(1) [not null, default: "0"]
+
+Indexes {
+  api_key [unique, name: "api_key"]
+}
+}

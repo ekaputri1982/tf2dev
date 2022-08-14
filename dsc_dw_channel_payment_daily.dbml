@@ -1,0 +1,11 @@
+Table "dsc_dw_channel_payment_daily" {
+  "id" INT(11) [pk, not null, increment]
+  "channel_id" INT(11) [not null, default: "0"]
+  "tanggal" DATE [default: NULL]
+  "total" DOUBLE(22,0) [default: NULL]
+
+Indexes {
+  tanggal [name: "tanggal"]
+  channel_id [name: "channel_id"]
+}
+}

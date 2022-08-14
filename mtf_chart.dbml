@@ -1,0 +1,16 @@
+Table "mtf_chat" {
+  "id" INT(10) [pk, not null, increment]
+  "from" INT(10) [not null]
+  "fromtype" TINYINT(3) [not null]
+  "to" INT(10) [not null]
+  "totype" TINYINT(3) [not null]
+  "message" TEXT [not null]
+  "state" TINYINT(3) [not null, default: "0"]
+  "MODIFIED" INT(11) [not null]
+
+Indexes {
+  (fromtype, from) [name: "from"]
+  state [name: "state"]
+  (totype, to) [name: "to"]
+}
+}

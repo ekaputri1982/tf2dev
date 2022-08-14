@@ -1,0 +1,15 @@
+Table "dsc_dw_channel_pair_consecutive" {
+  "id" INT(11) [pk, not null, increment]
+  "channelid" INT(11) [not null]
+  "pair" VARCHAR(16) [not null, default: ""]
+  "type" VARCHAR(16) [not null, default: ""]
+  "jumlah" INT(11) [not null, default: "0"]
+  "pips" DOUBLE [not null, default: "0"]
+  "netprofit" DOUBLE [not null, default: "0"]
+  "from" DATETIME [not null]
+  "to" DATETIME [not null]
+
+Indexes {
+  (channelid, pair, type) [unique, name: "channelid_pair_type"]
+}
+}

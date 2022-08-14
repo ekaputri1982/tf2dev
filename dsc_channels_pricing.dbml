@@ -1,0 +1,17 @@
+Enum "dsc_channels_pricing_unit_enum" {
+  "day"
+  "month"
+  "year"
+}
+
+Table "dsc_channels_pricing" {
+  "channel_id" INT(11) [not null]
+  "qty" INT(11) [not null]
+  "unit" dsc_channels_pricing_unit_enum [not null, default: "month"]
+  "price" DOUBLE [not null]
+  "CREATED_AT" TIMESTAMP [not null, default: `current_timestamp()`]
+
+Indexes {
+  (channel_id, qty, unit) [pk]
+}
+}

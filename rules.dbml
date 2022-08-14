@@ -1,0 +1,16 @@
+Enum "rules_individual_enum" {
+  "0"
+  "1"
+}
+
+Table "rules" {
+  "id" INT(11) [pk, not null, increment]
+  "name" VARCHAR(75) [not null]
+  "description" TEXT [default: NULL]
+  "state" TINYINT(4) [not null]
+  "individual" rules_individual_enum [not null]
+
+Indexes {
+  name [unique, name: "rules_name"]
+}
+}
